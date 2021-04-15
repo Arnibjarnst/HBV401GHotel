@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
-/*
+
 public class HotelDBold {
 
     private static Connection connectToDB() {
@@ -36,4 +36,4 @@ public class HotelDBold {
 
 }
 
-*/
+
