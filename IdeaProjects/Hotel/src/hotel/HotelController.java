@@ -1,8 +1,8 @@
-package sample;
+package hotel;
 
 import java.util.ArrayList;
 
-import sample.HotelDB;
+import hotel.HotelDB;
 
 public class HotelController {
     private Hotel hotels[];

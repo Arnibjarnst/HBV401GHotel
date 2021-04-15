@@ -91,6 +91,11 @@
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ArniB\IdeaProjects\Hotel\src\" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -174,13 +179,13 @@
       </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <option name="MAIN_CLASS_NAME" value="hotel.Main" />
       <module name="Hotel" />
       <option name="PROGRAM_PARAMETERS" value="1 23 3131 hello" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 2019.2\javafx-sdk-11.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sample.*" />
+          <option name="PATTERN" value="hotel.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -195,7 +200,7 @@
       <method v="2" />
     </configuration>
     <configuration name="sample.DBSetup" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="sample.DBSetup" />
+      <option name="MAIN_CLASS_NAME" value="hotel.DBSetup" />
       <module name="Hotel" />
       <method v="2" />
     </configuration>
@@ -203,12 +208,12 @@
       <module name="Hotel" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sample.*" />
+          <option name="PATTERN" value="hotel.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="sample" />
-      <option name="MAIN_CLASS_NAME" value="sample.HotelControllerTest" />
+      <option name="PACKAGE_NAME" value="hotel" />
+      <option name="MAIN_CLASS_NAME" value="hotel.HotelControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="TEST_SEARCH_SCOPE">

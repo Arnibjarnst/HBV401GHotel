@@ -1,4 +1,4 @@
-package sample;
+package hotel;
 
 import java.sql.*;
 import java.util.ArrayList;

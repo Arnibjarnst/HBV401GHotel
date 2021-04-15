@@ -1,4 +1,4 @@
-package sample;
+package hotel;
 
 import org.junit.After;
 import org.junit.Before;

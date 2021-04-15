@@ -1,4 +1,4 @@
-package sample;
+package hotel;
 
 import java.io.File;
 import java.io.FileNotFoundException;

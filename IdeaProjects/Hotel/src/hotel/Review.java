@@ -1,4 +1,4 @@
-package sample;
+package hotel;
 
 public class Review {
     private int rating;

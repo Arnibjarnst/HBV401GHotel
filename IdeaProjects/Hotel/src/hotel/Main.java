@@ -1,4 +1,4 @@
-package sample;
+package hotel;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
