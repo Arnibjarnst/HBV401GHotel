@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1139.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.HotelController">
+   <children>
+      <Button layoutX="977.0" layoutY="38.0" mnemonicParsing="false" onAction="#searchHotelHandler" prefHeight="38.0" prefWidth="75.0" text="Search" />
+      <TextField fx:id="fxlocation" layoutX="19.0" layoutY="38.0" prefHeight="38.0" prefWidth="164.0" promptText="Location:" />
+      <TextField fx:id="fxadults" layoutX="724.0" layoutY="38.0" prefHeight="38.0" prefWidth="164.0" promptText="1 adult" />
+      <DatePicker fx:id="fxcheckin" editable="false" layoutX="224.0" layoutY="38.0" prefHeight="38.0" prefWidth="190.0" promptText="Check-in" />
+      <DatePicker fx:id="fxcheckout" editable="false" layoutX="470.0" layoutY="38.0" prefHeight="38.0" prefWidth="200.0" promptText="Check-out" />
+      <ListView fx:id="fxhotels" layoutX="19.0" layoutY="95.0" prefHeight="543.0" prefWidth="872.0" />
+   </children>
+</AnchorPane>

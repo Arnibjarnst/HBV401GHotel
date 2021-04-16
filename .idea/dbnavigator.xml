@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DBNavigator.Project.DataEditorManager">
+    <record-view-column-sorting-type value="BY_INDEX" />
+    <value-preview-text-wrapping value="false" />
+    <value-preview-pinned value="false" />
+  </component>
+  <component name="DBNavigator.Project.DataExportManager">
+    <export-instructions>
+      <create-header value="true" />
+      <friendly-headers value="false" />
+      <quote-values-containing-separator value="true" />
+      <quote-all-values value="false" />
+      <value-separator value="" />
+      <file-name value="" />
+      <file-location value="" />
+      <scope value="GLOBAL" />
+      <destination value="FILE" />
+      <format value="EXCEL" />
+      <charset value="windows-1252" />
+    </export-instructions>
+  </component>
+  <component name="DBNavigator.Project.DatabaseBrowserManager">
+    <autoscroll-to-editor value="false" />
+    <autoscroll-from-editor value="true" />
+    <show-object-properties value="false" />
+    <loaded-nodes>
+      <connection connection-id="a730dc78-9d26-4a16-9a15-24e7c121fa7c">
+        <schema name="main" object-types="view, table" />
+      </connection>
+    </loaded-nodes>
+  </component>
+  <component name="DBNavigator.Project.DatabaseConsoleManager">
+    <connection id="a730dc78-9d26-4a16-9a15-24e7c121fa7c">
+      <console name="connection" type="STANDARD" schema="main" session="Main"><![CDATA[DROP TABLE IF EXISTS hotels;
+DROP TABLE IF EXISTS hotelrooms;
+DROP TABLE IF EXISTS reviews;
+DROP TABLE IF EXISTS bookings;
+
+CREATE TABLE IF NOT EXISTS hotels(
+	id INTEGER NOT NULL PRIMARY KEY,
+	name VARCHAR(40),
+	location VARCHAR(40),
+	stars INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS hotelrooms(
+    hotelid INTEGER NOT NULL,
+    roomtype VARCHAR(40),
+    roomcount INTEGER,
+    price FLOAT,
+	PRIMARY KEY(hotelid, roomtype),
+	FOREIGN KEY(hotelid) REFERENCES hotels(id)
+);
+
+CREATE TABLE IF NOT EXISTS reviews(
+	hotelid INTEGER NOT NULL,
+  	rating FLOAT,
+  	review VARCHAR(280),
+  	username VARCHAR(40) NOT NULL,
+  	PRIMARY KEY(hotelid, username)
+  );
+
+CREATE TABLE IF NOT EXISTS bookings(
+	hotelid INTEGER NOT NULL,
+	username VARCHAR(40) NOT NULL,
+	roomtype VARCHAR(40),
+	checkin DATE,
+	checkout DATE,
+	CONSTRAINT hotelbooking PRIMARY KEY (hotelid, username, checkin)
+);
+
+
+insert into hotels VALUES(1,'Kea', 'Akureyri', 3);
+insert into hotels VALUES(2, 'Hilton', 'London', 4);
+insert into hotels VALUES(3, 'Hilton', 'Paris', 4);
+insert into hotels VALUES(4, 'Saga', 'Paris', 5);
+insert into hotels VALUES(5, 'Bellagio', 'Las Vegas', 5);
+insert into hotels VALUES(6, 'Aria', 'Las Vegas', 5);
+insert into hotels VALUES(7, 'MGM Grand', 'Las Vegas', 4);
+insert into hotels VALUES(8, 'Citadines', 'Tokyo', 3);
+insert into hotels VALUES(9, 'Exsaison', 'Tokyo', 2);
+insert into hotels VALUES(10, 'Marriot', 'New York', 4);
+insert into hotels VALUES(11, 'Marriot', 'London', 4);
+insert into hotelrooms VALUES(1, 'single room', 10, 5000);
+insert into hotelrooms VALUES(1, 'double room', 8, 8000);
+insert into hotelrooms VALUES(1, 'Suite', 2, 15000);
+insert into hotelrooms VALUES(2, 'double room', 50, 10000);
+insert into hotelrooms VALUES(2, 'Queen deluxe room', 20, 20000);
+insert into hotelrooms VALUES(2, 'King Executive Suite', 3, 45000);
+insert into hotelrooms VALUES(3, 'double room', 50, 10000);
+insert into hotelrooms VALUES(3, 'Superior room', 37, 17000);
+insert into hotelrooms VALUES(3, 'Queen deluxe room', 20, 20000);
+insert into hotelrooms VALUES(3, 'King Executive Suite', 3, 45000);
+insert into hotelrooms VALUES(4, 'double room', 40, 15000);
+insert into hotelrooms VALUES(4, 'suite', 5, 25000);
+insert into hotelrooms VALUES(5, 'double room', 60, 10000);
+insert into hotelrooms VALUES(5, 'suite', 25, 20000);
+insert into hotelrooms VALUES(5, 'King Executive Suite', 5, 50000);
+insert into hotelrooms VALUES(6, 'double room', 20, 6000);
+insert into hotelrooms VALUES(6, 'suite', 5, 15000);
+insert into hotelrooms VALUES(7, 'double room', 100, 8000);
+insert into hotelrooms VALUES(7, 'suite', 50, 20000);
+insert into hotelrooms VALUES(7, 'King Executive Suite', 10, 50000);
+insert into hotelrooms VALUES(7, 'Superior King Suite', 1, 100000);
+insert into hotelrooms VALUES(8, 'double room', 20, 5000);
+insert into hotelrooms VALUES(9, 'double room', 10, 4000);
+insert into hotelrooms VALUES(10, 'double room', 20, 6000);
+insert into hotelrooms VALUES(10, 'junior suite', 10, 15000);
+insert into hotelrooms VALUES(11, 'double room', 30, 10000);
+insert into hotelrooms VALUES(11, 'suite', 10, 20000);
+insert into reviews VALUES(1, 4.5, 'Amazing', 'JesusKrist');
+insert into reviews VALUES(2, 3.5, 'Noice', 'HakonLitli');
+insert into reviews VALUES(3, 2.5, 'Meh', 'Hjaltalin7');
+insert into reviews VALUES(4, 4, 'Very fine', 'JonaAlexPe');
+insert into reviews VALUES(5, 5, 'Exquisite', 'IsakLoftss');
+insert into reviews VALUES(6, 1, 'Terrible', 'AnnaSigga2');
+insert into reviews VALUES(1, 3, 'It was ok', 'DiegoB2434');
+insert into reviews VALUES(7, 2, 'Alright', 'NinjaBunny');
+insert into reviews VALUES(7, 4, 'I loved it', 'OlafurRagn');
+insert into reviews VALUES(8, 5, 'Perfect', 'DarriMarTh');
+insert into reviews VALUES(9, 1, 'Reported', 'LifandiJon');
+insert into reviews VALUES(10, 3, 'Not too bad', 'BaldurThor');
+insert into reviews VALUES(11, 2, 'O.K.', 'Gudmundur6');
+insert into reviews VALUES(1, 2, 'Sad', 'AnnaLara20');
+insert into reviews VALUES(2, 3, 'Nice room', 'IsakArniJ2');
+insert into reviews VALUES(3, 4.5, 'Good food', 'ArniBjarns');
+insert into reviews VALUES(4, 2, 'Not fine', 'DiscordGuy');
+insert into reviews VALUES(5, 1, 'Im crying', 'HakonOrnHa');
+insert into reviews VALUES(6, 5, 'Too good', 'LarusGummi');
+insert into reviews VALUES(2, 3.5, 'It was good', 'Sigthor405');
+insert into reviews VALUES(7, 4, 'Ok for me', 'GeirHHorde');
+insert into reviews VALUES(7, 2, 'I didnt like it', 'Grimson243');
+insert into reviews VALUES(5, 1, 'Should be shut down', 'KariJohann');
+insert into reviews VALUES(9, 5, 'Will recommend', 'SiggiBK');
+insert into reviews VALUES(10, 1, 'I have called the police', 'Kenny');
+insert into reviews VALUES(11, 4, 'Staff was nice', 'JFK');
+insert into bookings VALUES(1, 'JesusKrist', 'single room', '2020-01-19', '2020-01-26');
+insert into bookings VALUES(1, 'AnnaLara20', 'double room', '2019-02-19', '2020-02-26');
+insert into bookings VALUES(1, 'DiegoB2434', 'suite', '2019-03-19', '2020-03-26');
+insert into bookings VALUES(2, 'Sigthor405', 'Queen deluxe room', '2019-04-19', '2020-04-26');
+insert into bookings VALUES(2, 'HakonLitli', 'King Executive suite', '2019-05-19', '2020-05-26');
+insert into bookings VALUES(2, 'IsakArniJ2', 'double room', '2019-06-19', '2020-06-26');
+insert into bookings VALUES(3, 'Hjaltalin7', 'Superior room', '2019-07-19', '2020-07-26');
+insert into bookings VALUES(3, 'ArniBjarns', 'King executive suite', '2020-01-19', '2020-01-26');
+insert into bookings VALUES(4, 'JonaAlexPe', 'double room', '2020-02-19', '2020-02-26');
+insert into bookings VALUES(4, 'DiscordGuy', 'suite', '2020-03-19', '2020-03-26');
+insert into bookings VALUES(5, 'IsakLoftss', 'double room', '2020-04-19', '2020-04-26');
+insert into bookings VALUES(5, 'HakonOrnHa', 'suite', '2020-05-19', '2020-05-26');
+insert into bookings VALUES(5, 'KariJohann', 'King Executive room', '2020-06-19', '2020-06-26');
+insert into bookings VALUES(6, 'AnnaSigga2', 'double room', '2020-07-19', '2020-07-26');
+insert into bookings VALUES(6, 'LarusGummi', 'suite', '2020-08-19', '2020-08-26');
+insert into bookings VALUES(7, 'NinjaBunny', 'double room', '2020-09-19', '2020-09-26');
+insert into bookings VALUES(7, 'GeirHHorde', 'suite', '2020-10-19', '2020-10-26');
+insert into bookings VALUES(7, 'OlafurRagn', 'King Executive Suite', '2020-11-19', '2020-11-26');
+insert into bookings VALUES(7, 'Grimson243', 'Superior King Suite', '2020-12-19', '2020-12-26');
+insert into bookings VALUES(8, 'DarriMarTh', 'double room', '2020-01-19', '2020-01-26');
+insert into bookings VALUES(10, 'BaldurThor', 'junior suite', '2020-02-19', '2020-02-26');
+insert into bookings VALUES(11, 'Gudmundur6', 'suite', '2020-03-19', '2020-03-26');
+insert into bookings VALUES(9, 'LifandiJon', 'double room', '2020-04-19', '2020-04-26');
+insert into bookings VALUES(8, 'DarriMarTh', 'double room', '2020-01-19', '2020-01-26');
+insert into bookings VALUES(10, 'BaldurThor', 'junior suite', '2020-02-19', '2020-02-26');
+insert into bookings VALUES(11, 'Gudmundur6', 'suite', '2020-03-19', '2020-03-26');
+insert into bookings VALUES(9, 'LifandiJon', 'double room', '2020-04-19', '2020-04-26');]]></console>
+    </connection>
+  </component>
+  <component name="DBNavigator.Project.DatabaseFileManager">
+    <open-files />
+  </component>
+  <component name="DBNavigator.Project.DatabaseSessionManager">
+    <connection id="a730dc78-9d26-4a16-9a15-24e7c121fa7c" />
+  </component>
+  <component name="DBNavigator.Project.EditorStateManager">
+    <last-used-providers />
+  </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
+  </component>
+  <component name="DBNavigator.Project.MethodExecutionManager">
+    <method-browser />
+    <execution-history>
+      <group-entries value="true" />
+      <execution-inputs />
+    </execution-history>
+    <argument-values-cache />
+  </component>
+  <component name="DBNavigator.Project.ObjectDependencyManager">
+    <last-used-dependency-type value="INCOMING" />
+  </component>
+  <component name="DBNavigator.Project.ObjectQuickFilterManager">
+    <last-used-operator value="EQUAL" />
+    <filters />
+  </component>
+  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
+    <recently-used-interfaces />
+  </component>
+  <component name="DBNavigator.Project.Settings">
+    <connections>
+      <connection id="a730dc78-9d26-4a16-9a15-24e7c121fa7c" active="true">
+        <database>
+          <name value="connection" />
+          <description value="" />
+          <database-type value="SQLITE" />
+          <config-type value="BASIC" />
+          <database-version value="3.21" />
+          <driver-source value="EXTERNAL" />
+          <driver-library value="C:\Users\ArniB\IdeaProjects\Hotel\src\sample\sqlite-jdbc-3.32.3.2.jar" />
+          <driver value="org.sqlite.JDBC" />
+          <url-type value="FILE" />
+          <host value="localhost" />
+          <port value="1234" />
+          <database value="database" />
+          <files>
+            <file path="C:\Users\ArniB\IdeaProjects\Hotel\src\sample\OurDB.db" schema="main" />
+          </files>
+          <type value="NONE" />
+          <user value="" />
+          <deprecated-pwd value="" />
+        </database>
+        <properties>
+          <auto-commit value="false" />
+        </properties>
+        <ssh-settings>
+          <active value="false" />
+          <proxy-host value="" />
+          <proxy-port value="22" />
+          <proxy-user value="" />
+          <deprecated-proxy-pwd value="" />
+          <auth-type value="PASSWORD" />
+          <key-file value="" />
+          <key-passphrase value="" />
+        </ssh-settings>
+        <ssl-settings>
+          <active value="false" />
+          <certificate-authority-file value="" />
+          <client-certificate-file value="" />
+          <client-key-file value="" />
+        </ssl-settings>
+        <details>
+          <charset value="UTF-8" />
+          <session-management value="true" />
+          <ddl-file-binding value="true" />
+          <database-logging value="false" />
+          <connect-automatically value="true" />
+          <restore-workspace value="true" />
+          <restore-workspace-deep value="true" />
+          <environment-type value="default" />
+          <connectivity-timeout value="5" />
+          <idle-time-to-disconnect value="30" />
+          <idle-time-to-disconnect-pool value="5" />
+          <credential-expiry-time value="10" />
+          <max-connection-pool-size value="7" />
+          <alternative-statement-delimiter value="" />
+        </details>
+        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
+          <object-type-filter use-master-settings="true">
+            <object-type name="SCHEMA" enabled="true" />
+            <object-type name="USER" enabled="true" />
+            <object-type name="ROLE" enabled="true" />
+            <object-type name="PRIVILEGE" enabled="true" />
+            <object-type name="CHARSET" enabled="true" />
+            <object-type name="TABLE" enabled="true" />
+            <object-type name="VIEW" enabled="true" />
+            <object-type name="MATERIALIZED_VIEW" enabled="true" />
+            <object-type name="NESTED_TABLE" enabled="true" />
+            <object-type name="COLUMN" enabled="true" />
+            <object-type name="INDEX" enabled="true" />
+            <object-type name="CONSTRAINT" enabled="true" />
+            <object-type name="DATASET_TRIGGER" enabled="true" />
+            <object-type name="DATABASE_TRIGGER" enabled="true" />
+            <object-type name="SYNONYM" enabled="true" />
+            <object-type name="SEQUENCE" enabled="true" />
+            <object-type name="PROCEDURE" enabled="true" />
+            <object-type name="FUNCTION" enabled="true" />
+            <object-type name="PACKAGE" enabled="true" />
+            <object-type name="TYPE" enabled="true" />
+            <object-type name="TYPE_ATTRIBUTE" enabled="true" />
+            <object-type name="ARGUMENT" enabled="true" />
+            <object-type name="DIMENSION" enabled="true" />
+            <object-type name="CLUSTER" enabled="true" />
+            <object-type name="DBLINK" enabled="true" />
+          </object-type-filter>
+          <object-name-filters />
+        </object-filters>
+      </connection>
+    </connections>
+    <browser-settings>
+      <general>
+        <display-mode value="TABBED" />
+        <navigation-history-size value="100" />
+        <show-object-details value="false" />
+      </general>
+      <filters>
+        <object-type-filter>
+          <object-type name="SCHEMA" enabled="true" />
+          <object-type name="USER" enabled="true" />
+          <object-type name="ROLE" enabled="true" />
+          <object-type name="PRIVILEGE" enabled="true" />
+          <object-type name="CHARSET" enabled="true" />
+          <object-type name="TABLE" enabled="true" />
+          <object-type name="VIEW" enabled="true" />
+          <object-type name="MATERIALIZED_VIEW" enabled="true" />
+          <object-type name="NESTED_TABLE" enabled="true" />
+          <object-type name="COLUMN" enabled="true" />
+          <object-type name="INDEX" enabled="true" />
+          <object-type name="CONSTRAINT" enabled="true" />
+          <object-type name="DATASET_TRIGGER" enabled="true" />
+          <object-type name="DATABASE_TRIGGER" enabled="true" />
+          <object-type name="SYNONYM" enabled="true" />
+          <object-type name="SEQUENCE" enabled="true" />
+          <object-type name="PROCEDURE" enabled="true" />
+          <object-type name="FUNCTION" enabled="true" />
+          <object-type name="PACKAGE" enabled="true" />
+          <object-type name="TYPE" enabled="true" />
+          <object-type name="TYPE_ATTRIBUTE" enabled="true" />
+          <object-type name="ARGUMENT" enabled="true" />
+          <object-type name="DIMENSION" enabled="true" />
+          <object-type name="CLUSTER" enabled="true" />
+          <object-type name="DBLINK" enabled="true" />
+        </object-type-filter>
+      </filters>
+      <sorting>
+        <object-type name="COLUMN" sorting-type="NAME" />
+        <object-type name="FUNCTION" sorting-type="NAME" />
+        <object-type name="PROCEDURE" sorting-type="NAME" />
+        <object-type name="ARGUMENT" sorting-type="POSITION" />
+      </sorting>
+      <default-editors>
+        <object-type name="VIEW" editor-type="SELECTION" />
+        <object-type name="PACKAGE" editor-type="SELECTION" />
+        <object-type name="TYPE" editor-type="SELECTION" />
+      </default-editors>
+    </browser-settings>
+    <navigation-settings>
+      <lookup-filters>
+        <lookup-objects>
+          <object-type name="SCHEMA" enabled="true" />
+          <object-type name="USER" enabled="false" />
+          <object-type name="ROLE" enabled="false" />
+          <object-type name="PRIVILEGE" enabled="false" />
+          <object-type name="CHARSET" enabled="false" />
+          <object-type name="TABLE" enabled="true" />
+          <object-type name="VIEW" enabled="true" />
+          <object-type name="MATERIALIZED VIEW" enabled="true" />
+          <object-type name="INDEX" enabled="true" />
+          <object-type name="CONSTRAINT" enabled="true" />
+          <object-type name="DATASET TRIGGER" enabled="true" />
+          <object-type name="DATABASE TRIGGER" enabled="true" />
+          <object-type name="SYNONYM" enabled="false" />
+          <object-type name="SEQUENCE" enabled="true" />
+          <object-type name="PROCEDURE" enabled="true" />
+          <object-type name="FUNCTION" enabled="true" />
+          <object-type name="PACKAGE" enabled="true" />
+          <object-type name="TYPE" enabled="true" />
+          <object-type name="DIMENSION" enabled="false" />
+          <object-type name="CLUSTER" enabled="false" />
+          <object-type name="DBLINK" enabled="true" />
+        </lookup-objects>
+        <force-database-load value="false" />
+        <prompt-connection-selection value="true" />
+        <prompt-schema-selection value="true" />
+      </lookup-filters>
+    </navigation-settings>
+    <dataset-grid-settings>
+      <general>
+        <enable-zooming value="true" />
+        <enable-column-tooltip value="true" />
+      </general>
+      <sorting>
+        <nulls-first value="true" />
+        <max-sorting-columns value="4" />
+      </sorting>
+      <tracking-columns>
+        <columnNames value="" />
+        <visible value="true" />
+        <editable value="false" />
+      </tracking-columns>
+    </dataset-grid-settings>
+    <dataset-editor-settings>
+      <text-editor-popup>
+        <active value="false" />
+        <active-if-empty value="false" />
+        <data-length-threshold value="100" />
+        <popup-delay value="1000" />
+      </text-editor-popup>
+      <values-actions-popup>
+        <show-popup-button value="true" />
+        <element-count-threshold value="1000" />
+        <data-length-threshold value="250" />
+      </values-actions-popup>
+      <general>
+        <fetch-block-size value="100" />
+        <fetch-timeout value="30" />
+        <trim-whitespaces value="true" />
+        <convert-empty-strings-to-null value="true" />
+        <select-content-on-cell-edit value="true" />
+        <large-value-preview-active value="true" />
+      </general>
+      <filters>
+        <prompt-filter-dialog value="true" />
+        <default-filter-type value="BASIC" />
+      </filters>
+      <qualified-text-editor text-length-threshold="300">
+        <content-types>
+          <content-type name="Text" enabled="true" />
+          <content-type name="XML" enabled="true" />
+          <content-type name="DTD" enabled="true" />
+          <content-type name="HTML" enabled="true" />
+          <content-type name="XHTML" enabled="true" />
+          <content-type name="Java" enabled="true" />
+          <content-type name="SQL" enabled="true" />
+          <content-type name="PL/SQL" enabled="true" />
+          <content-type name="JSON" enabled="true" />
+          <content-type name="JSON5" enabled="true" />
+          <content-type name="Manifest" enabled="true" />
+        </content-types>
+      </qualified-text-editor>
+      <record-navigation>
+        <navigation-target value="VIEWER" />
+      </record-navigation>
+    </dataset-editor-settings>
+    <code-editor-settings>
+      <general>
+        <show-object-navigation-gutter value="false" />
+        <show-spec-declaration-navigation-gutter value="true" />
+        <enable-spellchecking value="true" />
+        <enable-reference-spellchecking value="false" />
+      </general>
+      <confirmations>
+        <save-changes value="false" />
+        <revert-changes value="true" />
+      </confirmations>
+    </code-editor-settings>
+    <code-completion-settings>
+      <filters>
+        <basic-filter>
+          <filter-element type="RESERVED_WORD" id="keyword" selected="true" />
+          <filter-element type="RESERVED_WORD" id="function" selected="true" />
+          <filter-element type="RESERVED_WORD" id="parameter" selected="true" />
+          <filter-element type="RESERVED_WORD" id="datatype" selected="true" />
+          <filter-element type="RESERVED_WORD" id="exception" selected="true" />
+          <filter-element type="OBJECT" id="schema" selected="true" />
+          <filter-element type="OBJECT" id="role" selected="true" />
+          <filter-element type="OBJECT" id="user" selected="true" />
+          <filter-element type="OBJECT" id="privilege" selected="true" />
+          <user-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="false" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </user-schema>
+          <public-schema>
+            <filter-element type="OBJECT" id="table" selected="false" />
+            <filter-element type="OBJECT" id="view" selected="false" />
+            <filter-element type="OBJECT" id="materialized view" selected="false" />
+            <filter-element type="OBJECT" id="index" selected="false" />
+            <filter-element type="OBJECT" id="constraint" selected="false" />
+            <filter-element type="OBJECT" id="trigger" selected="false" />
+            <filter-element type="OBJECT" id="synonym" selected="false" />
+            <filter-element type="OBJECT" id="sequence" selected="false" />
+            <filter-element type="OBJECT" id="procedure" selected="false" />
+            <filter-element type="OBJECT" id="function" selected="false" />
+            <filter-element type="OBJECT" id="package" selected="false" />
+            <filter-element type="OBJECT" id="type" selected="false" />
+            <filter-element type="OBJECT" id="dimension" selected="false" />
+            <filter-element type="OBJECT" id="cluster" selected="false" />
+            <filter-element type="OBJECT" id="dblink" selected="false" />
+          </public-schema>
+          <any-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </any-schema>
+        </basic-filter>
+        <extended-filter>
+          <filter-element type="RESERVED_WORD" id="keyword" selected="true" />
+          <filter-element type="RESERVED_WORD" id="function" selected="true" />
+          <filter-element type="RESERVED_WORD" id="parameter" selected="true" />
+          <filter-element type="RESERVED_WORD" id="datatype" selected="true" />
+          <filter-element type="RESERVED_WORD" id="exception" selected="true" />
+          <filter-element type="OBJECT" id="schema" selected="true" />
+          <filter-element type="OBJECT" id="user" selected="true" />
+          <filter-element type="OBJECT" id="role" selected="true" />
+          <filter-element type="OBJECT" id="privilege" selected="true" />
+          <user-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </user-schema>
+          <public-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </public-schema>
+          <any-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </any-schema>
+        </extended-filter>
+      </filters>
+      <sorting enabled="true">
+        <sorting-element type="RESERVED_WORD" id="keyword" />
+        <sorting-element type="RESERVED_WORD" id="datatype" />
+        <sorting-element type="OBJECT" id="column" />
+        <sorting-element type="OBJECT" id="table" />
+        <sorting-element type="OBJECT" id="view" />
+        <sorting-element type="OBJECT" id="materialized view" />
+        <sorting-element type="OBJECT" id="index" />
+        <sorting-element type="OBJECT" id="constraint" />
+        <sorting-element type="OBJECT" id="trigger" />
+        <sorting-element type="OBJECT" id="synonym" />
+        <sorting-element type="OBJECT" id="sequence" />
+        <sorting-element type="OBJECT" id="procedure" />
+        <sorting-element type="OBJECT" id="function" />
+        <sorting-element type="OBJECT" id="package" />
+        <sorting-element type="OBJECT" id="type" />
+        <sorting-element type="OBJECT" id="dimension" />
+        <sorting-element type="OBJECT" id="cluster" />
+        <sorting-element type="OBJECT" id="dblink" />
+        <sorting-element type="OBJECT" id="schema" />
+        <sorting-element type="OBJECT" id="role" />
+        <sorting-element type="OBJECT" id="user" />
+        <sorting-element type="RESERVED_WORD" id="function" />
+        <sorting-element type="RESERVED_WORD" id="parameter" />
+      </sorting>
+      <format>
+        <enforce-code-style-case value="true" />
+      </format>
+    </code-completion-settings>
+    <execution-engine-settings>
+      <statement-execution>
+        <fetch-block-size value="100" />
+        <execution-timeout value="20" />
+        <debug-execution-timeout value="600" />
+        <focus-result value="false" />
+        <prompt-execution value="false" />
+      </statement-execution>
+      <script-execution>
+        <command-line-interfaces />
+        <execution-timeout value="300" />
+      </script-execution>
+      <method-execution>
+        <execution-timeout value="30" />
+        <debug-execution-timeout value="600" />
+        <parameter-history-size value="10" />
+      </method-execution>
+    </execution-engine-settings>
+    <operation-settings>
+      <transactions>
+        <uncommitted-changes>
+          <on-project-close value="ASK" />
+          <on-disconnect value="ASK" />
+          <on-autocommit-toggle value="ASK" />
+        </uncommitted-changes>
+        <multiple-uncommitted-changes>
+          <on-commit value="ASK" />
+          <on-rollback value="ASK" />
+        </multiple-uncommitted-changes>
+      </transactions>
+      <session-browser>
+        <disconnect-session value="ASK" />
+        <kill-session value="ASK" />
+        <reload-on-filter-change value="false" />
+      </session-browser>
+      <compiler>
+        <compile-type value="KEEP" />
+        <compile-dependencies value="ASK" />
+        <always-show-controls value="false" />
+      </compiler>
+      <debugger>
+        <debugger-type value="ASK" />
+        <use-generic-runners value="true" />
+      </debugger>
+    </operation-settings>
+    <ddl-file-settings>
+      <extensions>
+        <mapping file-type-id="VIEW" extensions="vw" />
+        <mapping file-type-id="TRIGGER" extensions="trg" />
+        <mapping file-type-id="PROCEDURE" extensions="prc" />
+        <mapping file-type-id="FUNCTION" extensions="fnc" />
+        <mapping file-type-id="PACKAGE" extensions="pkg" />
+        <mapping file-type-id="PACKAGE_SPEC" extensions="pks" />
+        <mapping file-type-id="PACKAGE_BODY" extensions="pkb" />
+        <mapping file-type-id="TYPE" extensions="tpe" />
+        <mapping file-type-id="TYPE_SPEC" extensions="tps" />
+        <mapping file-type-id="TYPE_BODY" extensions="tpb" />
+      </extensions>
+      <general>
+        <lookup-ddl-files value="true" />
+        <create-ddl-files value="false" />
+        <synchronize-ddl-files value="true" />
+        <use-qualified-names value="false" />
+        <make-scripts-rerunnable value="true" />
+      </general>
+    </ddl-file-settings>
+    <general-settings>
+      <regional-settings>
+        <date-format value="MEDIUM" />
+        <number-format value="UNGROUPED" />
+        <locale value="SYSTEM_DEFAULT" />
+        <use-custom-formats value="false" />
+      </regional-settings>
+      <environment>
+        <environment-types>
+          <environment-type id="development" name="Development" description="Development environment" color="-2430209/-12296320" readonly-code="false" readonly-data="false" />
+          <environment-type id="integration" name="Integration" description="Integration environment" color="-2621494/-12163514" readonly-code="true" readonly-data="false" />
+          <environment-type id="production" name="Production" description="Productive environment" color="-11574/-10271420" readonly-code="true" readonly-data="true" />
+          <environment-type id="other" name="Other" description="" color="-1576/-10724543" readonly-code="false" readonly-data="false" />
+        </environment-types>
+        <visibility-settings>
+          <connection-tabs value="true" />
+          <dialog-headers value="true" />
+          <object-editor-tabs value="true" />
+          <script-editor-tabs value="false" />
+          <execution-result-tabs value="true" />
+        </visibility-settings>
+      </environment>
+    </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
+  </component>
+</project>
