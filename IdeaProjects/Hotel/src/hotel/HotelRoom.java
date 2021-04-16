@@ -10,11 +10,9 @@ public class HotelRoom {
     double price;
     ArrayList<Booking> bookings;
 
-    public HotelRoom(Hotel hotel, String type, int size, int count, double price) {
+    public HotelRoom(Hotel hotel, String type, double price) {
         this.hotel = hotel;
         this.type = type;
-        this.size = size;
-        this.count = count;
         this.price = price;
         this.bookings = new ArrayList<Booking>();
     }
