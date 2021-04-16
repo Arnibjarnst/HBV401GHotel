@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.event.*;
+
 import java.util.ArrayList;
 
 public class HotelController {
@@ -10,6 +12,9 @@ public class HotelController {
 
     public HotelController(){
         db = new HotelDB();
+    }
+
+    public void searchHotelHandler(ActionEvent actionEvent){
 
     }
 
