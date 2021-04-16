@@ -1,15 +1,20 @@
 package sample;
 
+import java.util.ArrayList;
+
 public class HotelController {
-    private Hotel hotels[];
+    private ArrayList<Hotel> hotels;
+    private ArrayList<HotelRoom> rooms;
+
     private HotelDB db;
 
     public HotelController(){
         db = new HotelDB();
+
     }
-    /*
-    public ArrayList<HotelRoom> searchHotels(double minprice, double maxprice,String location) {
-        return db.getHotels(minprice, maxprice,location);
+
+    public ArrayList<HotelRoom> searchHotels(String location, String begin, String end, int count, double minprice, double maxprice, String type) {
+        return db.getHotels(location, begin, end, count, minprice, maxprice, type);
     }
 
     public void addReview(int rating, String comment, String userName,Hotel hotel){
@@ -36,5 +41,5 @@ public class HotelController {
     public ArrayList<Booking> getBookings(HotelRoom room){
         return db.getBookings(room);
     }
-    */
+
 }

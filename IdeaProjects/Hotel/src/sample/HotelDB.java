@@ -16,7 +16,7 @@ public class HotelDB {
         return conn;
     }
 
-    public static ArrayList<HotelRoom> getHotels(String location, Date begin, Date end, int count, double minprice, double maxprice, String type) {
+    public static ArrayList<HotelRoom> getHotels(String location, String begin, String end, int count, double minprice, double maxprice, String type) {
         Connection conn = connectToDB();
         ArrayList<HotelRoom> rooms = new ArrayList<HotelRoom>();
         try {
@@ -29,10 +29,10 @@ public class HotelDB {
                 //má bæta (ekki optimal skipting)
                 ResultSet reviews = st2.executeQuery("select count(*) from bookings where hotelid = " + rs.getInt("hotelid") +
                         " and roomtype like '" + rs.getString("roomtype") +
-                        "' and (checkin between " + begin + " and " + end +
-                        " or checkout between " + begin + " and " + end + ")");
+                        "' and checkin <= '" + end +
+                        "' and checkout >= '" + begin + "'");
                 if(rs.getInt("roomcount") - reviews.getInt(1) >= count){
-                    Hotel hotel = new Hotel(rs.getString("name"),location);
+                    Hotel hotel = new Hotel(rs.getString("name"),rs.getString("location"));
                     rooms.add(new HotelRoom(hotel,rs.getString("roomtype"),rs.getDouble("price")));
                 }
             }
@@ -42,10 +42,40 @@ public class HotelDB {
         return rooms;
     }
 
+    public static void insertBooking(String userName,HotelRoom room,String begin, String end){
+
+    }
+
+    public static void deleteBooking(String userName, HotelRoom room, String begin){
+
+    }
+
+    public static void insertReview(Review review, Hotel hotel){
+
+    }
+
+    public static void deleteReview(String userName, Hotel hotel){
+
+    }
+
+    public static ArrayList<Review> getReviews(Hotel hotel){
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        return reviews;
+    }
+
+    public static ArrayList<Booking> getBookings(HotelRoom room){
+        ArrayList<Booking> bookings = new ArrayList<Booking>();
+        return bookings;
+    }
+
 
     public static void main(String[] args) {
         HotelDB test = new HotelDB();
-        ArrayList<HotelRoom> a = test.getHotels("Paris",Date.valueOf("2017-04-09"),Date.valueOf("2017-05-10"),2,0,100000,"double room");
+        ArrayList<HotelRoom> rooms = test.getHotels("Las Vegas","2020-12-21","2020-12-25",1,70000,120000,"%");
+        for(int i=0; i < rooms.size(); i++){
+            Hotel hotel = rooms.get(i).hotel;
+            System.out.println(rooms.get(i));
+        }
     }
 }
 

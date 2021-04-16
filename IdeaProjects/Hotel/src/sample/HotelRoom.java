@@ -68,4 +68,16 @@ public class HotelRoom {
     public void addBooking(Booking booking){
         this.bookings.add(booking);
     }
+
+    @Override
+    public String toString() {
+        return "HotelRoom{" +
+                "hotel=" + hotel +
+                ", type='" + type + '\'' +
+                ", size=" + size +
+                ", count=" + count +
+                ", price=" + price +
+                ", bookings=" + bookings +
+                '}';
+    }
 }
