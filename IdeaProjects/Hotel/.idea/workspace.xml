@@ -108,7 +108,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.sample.DBSetup">
+  <component name="RunManager" selected="Application.hotel.HotelDB">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -179,13 +179,13 @@
       </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="hotel.Main" />
+      <option name="MAIN_CLASS_NAME" value="sample.Main" />
       <module name="Hotel" />
       <option name="PROGRAM_PARAMETERS" value="1 23 3131 hello" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 2019.2\javafx-sdk-11.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="hotel.*" />
+          <option name="PATTERN" value="sample.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -199,8 +199,13 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
+    <configuration name="hotel.HotelDB" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="sample.HotelDB" />
+      <module name="Hotel" />
+      <method v="2" />
+    </configuration>
     <configuration name="sample.DBSetup" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="hotel.DBSetup" />
+      <option name="MAIN_CLASS_NAME" value="sample.DBSetup" />
       <module name="Hotel" />
       <method v="2" />
     </configuration>
@@ -208,12 +213,12 @@
       <module name="Hotel" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="hotel.*" />
+          <option name="PATTERN" value="sample.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="hotel" />
-      <option name="MAIN_CLASS_NAME" value="hotel.HotelControllerTest" />
+      <option name="PACKAGE_NAME" value="sample" />
+      <option name="MAIN_CLASS_NAME" value="sample.HotelControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="TEST_SEARCH_SCOPE">

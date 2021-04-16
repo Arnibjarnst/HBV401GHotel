@@ -1,4 +1,4 @@
-package hotel;
+package sample;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,10 +15,6 @@ public class DBSetup {
             System.out.println(e);
         }
         return conn;
-    }
-
-    public static void setup(String filename){
-
     }
 
     public static void main(String[] args) {

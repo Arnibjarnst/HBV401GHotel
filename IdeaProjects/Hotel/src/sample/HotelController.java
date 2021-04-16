@@ -1,17 +1,13 @@
-package hotel;
-
-import java.util.ArrayList;
-
-import hotel.HotelDB;
+package sample;
 
 public class HotelController {
     private Hotel hotels[];
-    private HotelDBMock db;
+    private HotelDB db;
 
     public HotelController(){
-        db = new HotelDBMock();
+        db = new HotelDB();
     }
-
+    /*
     public ArrayList<HotelRoom> searchHotels(double minprice, double maxprice,String location) {
         return db.getHotels(minprice, maxprice,location);
     }
@@ -40,4 +36,5 @@ public class HotelController {
     public ArrayList<Booking> getBookings(HotelRoom room){
         return db.getBookings(room);
     }
+    */
 }

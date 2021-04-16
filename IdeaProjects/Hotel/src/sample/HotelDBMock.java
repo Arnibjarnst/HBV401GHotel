@@ -1,6 +1,4 @@
-package hotel;
-
-import java.util.ArrayList;
+package sample;
 
 /*
 @Authors:
@@ -54,8 +52,7 @@ import java.util.ArrayList;
 
 
 
-
-
+/*
 public class HotelDBMock implements HotelDB{
     private ArrayList<HotelRoom> rooms;
 
@@ -177,3 +174,5 @@ public class HotelDBMock implements HotelDB{
         return empty;
     }
 }
+
+*/

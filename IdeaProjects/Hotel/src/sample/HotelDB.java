@@ -1,4 +1,4 @@
-package hotel;
+package sample;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,16 +21,17 @@ public class HotelDB {
         ArrayList<HotelRoom> rooms = new ArrayList<HotelRoom>();
         try {
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select * from hotelrooms inner join hotels on hotelid = id where location like " + location +
-                                            " and price between " + minprice + " and " + maxprice +
-                                            " and roomtype like " + type);
+            Statement st2 = conn.createStatement();
+            ResultSet rs = st.executeQuery("select * from hotelrooms inner join hotels on hotelid = id where location like '" + location +
+                                            "' and price between " + minprice + " and " + maxprice +
+                                            " and roomtype like '" + type + "'");
             while (rs.next()) {
                 //má bæta (ekki optimal skipting)
-                ResultSet reviews = st.executeQuery("select count(*) from bookings where hotelid = " + rs.getString("hotelid") +
-                        " and roomtype = " + rs.getString("roomtype") +
-                        " and (checkin between " + begin + " and " + end +
+                ResultSet reviews = st2.executeQuery("select count(*) from bookings where hotelid = " + rs.getInt("hotelid") +
+                        " and roomtype like '" + rs.getString("roomtype") +
+                        "' and (checkin between " + begin + " and " + end +
                         " or checkout between " + begin + " and " + end + ")");
-                if(rs.getInt("roomcount") - reviews.getInt(0) >= count){
+                if(rs.getInt("roomcount") - reviews.getInt(1) >= count){
                     Hotel hotel = new Hotel(rs.getString("name"),location);
                     rooms.add(new HotelRoom(hotel,rs.getString("roomtype"),rs.getDouble("price")));
                 }
@@ -39,6 +40,12 @@ public class HotelDB {
             System.err.println(e.getMessage());
         }
         return rooms;
+    }
+
+
+    public static void main(String[] args) {
+        HotelDB test = new HotelDB();
+        ArrayList<HotelRoom> a = test.getHotels("Paris",Date.valueOf("2017-04-09"),Date.valueOf("2017-05-10"),2,0,100000,"double room");
     }
 }
 
