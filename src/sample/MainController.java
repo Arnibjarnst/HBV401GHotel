@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -84,8 +83,7 @@ public class MainController {
                 hotels.add(rooms.get(i).getHotel());
             }
         }
-        ObservableList<Hotel> list = FXCollections.observableArrayList(hotels);
-        fxhotels.setItems(list);
+        fxhotels.setItems(FXCollections.observableArrayList(hotels));
     }
 
     @FXML
@@ -114,6 +112,24 @@ public class MainController {
 
     public ArrayList<HotelRoom> searchHotels(String location, String begin, String end, int count, double minprice, double maxprice, String type) {
         return db.getHotels(location, begin, end, count, minprice, maxprice, type);
+    }
+
+    public void logInHandler(ActionEvent actionEvent) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LogInView.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Log In");
+        stage.setScene(new Scene(root, 300, 400));
+        stage.show();
+    }
+
+    public void signUpHandler(ActionEvent actionEvent) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUpView.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Sign Up");
+        stage.setScene(new Scene(root, 300, 400));
+        stage.show();
     }
 
     public void addReview(int rating, String comment, String userName,Hotel hotel){

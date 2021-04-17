@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1139.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="739.0" prefWidth="1261.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
    <children>
       <Button layoutX="977.0" layoutY="38.0" mnemonicParsing="false" onAction="#searchHotelHandler" prefHeight="38.0" prefWidth="75.0" text="Search" />
       <TextField fx:id="fxlocation" layoutX="19.0" layoutY="38.0" prefHeight="38.0" prefWidth="164.0" promptText="Location:" />
@@ -16,5 +16,7 @@
       <ListView fx:id="fxhotels" layoutX="19.0" layoutY="95.0" onMouseClicked="#chooseHotelHandler" prefHeight="543.0" prefWidth="872.0" />
       <TextField fx:id="fxminprice" layoutX="934.0" layoutY="137.0" prefHeight="38.0" prefWidth="149.0" promptText="min price" />
       <TextField fx:id="fxmaxprice" layoutX="934.0" layoutY="192.0" prefHeight="38.0" prefWidth="149.0" promptText="max price" />
+      <Button layoutX="1140.0" layoutY="30.0" mnemonicParsing="false" onAction="#logInHandler" prefHeight="27.0" prefWidth="88.0" text="Log In" />
+      <Button layoutX="1140.0" layoutY="68.0" mnemonicParsing="false" onAction="#signUpHandler" prefHeight="27.0" prefWidth="88.0" text="Sign Up" />
    </children>
 </AnchorPane>
