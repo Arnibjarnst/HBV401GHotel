@@ -56,8 +56,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -182,7 +182,6 @@
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
       <module name="Hotel" />
-      <option name="PROGRAM_PARAMETERS" value="1 23 3131 hello" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\ArniB\IdeaProjects\Hotel\javafx-sdk-11.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
@@ -201,7 +200,7 @@
       <method v="2" />
     </configuration>
     <configuration name="hotel.HotelDB" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="sample.HotelDB" />
+      <option name="MAIN_CLASS_NAME" value="sample.MainDB" />
       <module name="Hotel" />
       <method v="2" />
     </configuration>

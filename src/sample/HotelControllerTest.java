@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 /*
 public class HotelControllerTest {
-    private HotelController controller;
+    private MainController controller;
 
     @Before
     public void setUp(){
-        controller = new HotelController();
+        controller = new MainController();
     }
 
     @After
@@ -23,7 +23,7 @@ public class HotelControllerTest {
 
     @Test
     public void testSearchHotels1(){
-        HotelController controller = new HotelController();
+        MainController controller = new MainController();
         ArrayList<HotelRoom> rooms = controller.searchHotels(30.0,100.0,"Paris");
         assertEquals(1,rooms.size());
         assertEquals("Saga",rooms.get(0).getHotel().getName());

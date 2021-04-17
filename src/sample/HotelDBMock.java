@@ -53,7 +53,7 @@ package sample;
 
 
 /*
-public class HotelDBMock implements HotelDB{
+public class HotelDBMock implements MainDB{
     private ArrayList<HotelRoom> rooms;
 
     public HotelDBMock() {
