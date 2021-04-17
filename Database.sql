@@ -24,7 +24,8 @@ CREATE TABLE IF NOT EXISTS reviews(
   	rating FLOAT,
   	review VARCHAR(280),
   	username VARCHAR(40) NOT NULL,
-  	PRIMARY KEY(hotelid, username)
+  	PRIMARY KEY(hotelid),
+  	FOREIGN KEY(username) REFERENCES users(username)
   );
 
 CREATE TABLE IF NOT EXISTS bookings(
@@ -33,9 +34,20 @@ CREATE TABLE IF NOT EXISTS bookings(
 	roomtype VARCHAR(40),
 	checkin DATE,
 	checkout DATE,
-	FOREIGN KEY (hotelid,roomtype) REFERENCES hotelrooms(hotelid,roomtype)
+	FOREIGN KEY (hotelid,roomtype) REFERENCES hotelrooms(hotelid,roomtype),
+	FOREIGN KEY (username) REFERENCES users(username)
 );
 
+CREATE TABLE IF NOT EXISTS users(
+    username VARCHAR(40) NOT NULL,
+    email VARCHAR(40) NOT NULL,
+    password VARCHAR(40) NOT NULL,
+    PRIMARY KEY(username)
+);
+
+insert into users VALUES('jon','jon@jon.is', '123');
+insert into users VALUES('arni', 'arni@arni.is', '1234');
+insert into users VALUES('admin', 'admin@admin.is', 'admin')
 
 insert into hotels VALUES(1,'Kea', 'Akureyri', 3);
 insert into hotels VALUES(2, 'Hilton', 'London', 4);
