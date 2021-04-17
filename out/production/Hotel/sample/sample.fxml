@@ -13,6 +13,8 @@
       <TextField fx:id="fxadults" layoutX="724.0" layoutY="38.0" prefHeight="38.0" prefWidth="164.0" promptText="1 adult" />
       <DatePicker fx:id="fxcheckin" editable="false" layoutX="224.0" layoutY="38.0" prefHeight="38.0" prefWidth="190.0" promptText="Check-in" />
       <DatePicker fx:id="fxcheckout" editable="false" layoutX="470.0" layoutY="38.0" prefHeight="38.0" prefWidth="200.0" promptText="Check-out" />
-      <ListView fx:id="fxhotels" layoutX="19.0" layoutY="95.0" prefHeight="543.0" prefWidth="872.0" />
+      <ListView fx:id="fxhotels" layoutX="19.0" layoutY="95.0" onMouseClicked="#chooseHotelHandler" prefHeight="543.0" prefWidth="872.0" />
+      <TextField fx:id="fxminprice" layoutX="934.0" layoutY="137.0" prefHeight="38.0" prefWidth="149.0" promptText="min price" />
+      <TextField fx:id="fxmaxprice" layoutX="934.0" layoutY="192.0" prefHeight="38.0" prefWidth="149.0" promptText="max price" />
    </children>
 </AnchorPane>

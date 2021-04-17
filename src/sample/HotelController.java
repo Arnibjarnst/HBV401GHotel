@@ -3,9 +3,11 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.*;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import javafx.scene.input.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -25,6 +27,10 @@ public class HotelController {
     private DatePicker fxcheckout;
     @FXML
     private ListView<Hotel> fxhotels;
+    @FXML
+    private TextField fxminprice;
+    @FXML
+    private TextField fxmaxprice;
 
     public HotelController(){
         db = new HotelDB();
@@ -32,13 +38,6 @@ public class HotelController {
 
     public void searchHotelHandler(ActionEvent actionEvent){
         String loc = fxlocation.getText();
-
-        int count = 1;
-        try{
-            count = Integer.parseInt(fxadults.getText());
-        } catch (IllegalArgumentException e){
-            System.out.println(e);
-        }
 
         String begin = "1970-01-02";
         try{
@@ -54,7 +53,28 @@ public class HotelController {
             System.out.println(e);
         }
 
-        rooms = searchHotels(loc,begin,end,count,0,Integer.MAX_VALUE, "");
+        int count = 1;
+        try{
+            count = Integer.parseInt(fxadults.getText());
+        } catch (IllegalArgumentException e){
+            System.out.println(e);
+        }
+
+        double minprice = 0;
+        try{
+            minprice = Integer.parseInt(fxminprice.getText());
+        } catch (IllegalArgumentException e){
+            System.out.println(e);
+        }
+
+        double maxprice = Integer.MAX_VALUE;
+        try{
+            maxprice = Integer.parseInt(fxmaxprice.getText());
+        } catch (IllegalArgumentException e){
+            System.out.println(e);
+        }
+
+        rooms = searchHotels(loc,begin,end,count,minprice,maxprice, "");
         hotels = new ArrayList<Hotel>();
         for(int i=0;i<rooms.size();i++){
             if(!hotels.contains(rooms.get(i).getHotel())){
@@ -64,6 +84,30 @@ public class HotelController {
         ObservableList<Hotel> list = FXCollections.observableArrayList(hotels);
         fxhotels.setItems(list);
     }
+
+    /*
+    fxhotels.setOnMouseClicked(new EventHandler<MouseEvent>)() {
+
+        @Override
+        public void handle(MouseEvent click) {
+
+            if (click.getClickCount() == 2) {
+                //Use ListView's getSelected Item
+                Hotel currentItemSelected = fxhotels.getSelectionModel().getSelectedItem();
+                //use this to do whatever you want to. Open Link etc.
+            }
+        }
+    });
+    */
+
+    @FXML
+    public void chooseHotelHandler(MouseEvent click){
+        if(click.getClickCount() == 2) {
+            Hotel currHotel = fxhotels.getSelectionModel().getSelectedItem();
+            System.out.println(currHotel);
+        }
+    }
+
 
     public ArrayList<HotelRoom> searchHotels(String location, String begin, String end, int count, double minprice, double maxprice, String type) {
         return db.getHotels(location, begin, end, count, minprice, maxprice, type);
