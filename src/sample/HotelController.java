@@ -3,12 +3,15 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.*;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.scene.input.*;
-import java.time.LocalDate;
+import javafx.stage.Stage;
+
 import java.util.ArrayList;
 
 public class HotelController {
@@ -85,26 +88,16 @@ public class HotelController {
         fxhotels.setItems(list);
     }
 
-    /*
-    fxhotels.setOnMouseClicked(new EventHandler<MouseEvent>)() {
-
-        @Override
-        public void handle(MouseEvent click) {
-
-            if (click.getClickCount() == 2) {
-                //Use ListView's getSelected Item
-                Hotel currentItemSelected = fxhotels.getSelectionModel().getSelectedItem();
-                //use this to do whatever you want to. Open Link etc.
-            }
-        }
-    });
-    */
-
     @FXML
-    public void chooseHotelHandler(MouseEvent click){
+    public void chooseHotelHandler(MouseEvent click) throws Exception {
         if(click.getClickCount() == 2) {
             Hotel currHotel = fxhotels.getSelectionModel().getSelectedItem();
             System.out.println(currHotel);
+            Parent root = FXMLLoader.load(getClass().getResource("roomView.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Booging.kom");
+            stage.setScene(new Scene(root, 1100, 700));
+            stage.show();
         }
     }
 
