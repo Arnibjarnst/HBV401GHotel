@@ -73,7 +73,7 @@ public class HotelDB {
 
     public static void main(String[] args) {
         HotelDB test = new HotelDB();
-        ArrayList<HotelRoom> rooms = test.getHotels("Las Vegas","2020-12-21","2020-12-25",1,70000,120000,"%");
+        ArrayList<HotelRoom> rooms = test.getHotels("Las Vegas","2020-12-21","2020-12-25",1,10000,120000,"%");
         for(int i=0; i < rooms.size(); i++){
             Hotel hotel = rooms.get(i).hotel;
             System.out.println(rooms.get(i));
