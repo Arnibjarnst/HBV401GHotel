@@ -86,11 +86,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/javafx-sdk-11.0.2/lib" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
+    <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -183,7 +183,7 @@
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
       <module name="Hotel" />
       <option name="PROGRAM_PARAMETERS" value="1 23 3131 hello" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 2019.2\javafx-sdk-11.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\ArniB\IdeaProjects\Hotel\javafx-sdk-11.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="sample.*" />
@@ -239,6 +239,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.hotel.HotelDB" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.sample.DBSetup" />
+      <item itemvalue="JUnit.HotelControllerTest" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.HotelControllerTest" />
