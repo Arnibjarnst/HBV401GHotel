@@ -53,7 +53,6 @@ public class Hotel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Hotel hotel = (Hotel) o;
-        return name.equals(hotel.name) &&
-                location.equals(hotel.location);
+        return this.toString().equals(hotel.toString());
     }
 }

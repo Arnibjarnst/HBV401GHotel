@@ -71,13 +71,6 @@ public class HotelRoom {
 
     @Override
     public String toString() {
-        return "HotelRoom{" +
-                "hotel=" + hotel +
-                ", type='" + type + '\'' +
-                ", size=" + size +
-                ", count=" + count +
-                ", price=" + price +
-                ", bookings=" + bookings +
-                '}';
+        return String.format("%s %1.0f kr/night",type,price);
     }
 }

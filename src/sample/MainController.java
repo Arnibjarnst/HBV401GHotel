@@ -92,12 +92,22 @@ public class MainController {
     public void chooseHotelHandler(MouseEvent click) throws Exception {
         if(click.getClickCount() == 2) {
             Hotel currHotel = fxhotels.getSelectionModel().getSelectedItem();
-            System.out.println(currHotel);
-            Parent root = FXMLLoader.load(getClass().getResource("HotelView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("HotelView.fxml"));
+            Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle(currHotel.toString());
             stage.setScene(new Scene(root, 1100, 700));
             stage.show();
+
+            HotelController contr = loader.getController();
+            ArrayList<HotelRoom> currRooms = new ArrayList<HotelRoom>();
+            for(int i=0;i<rooms.size();i++){
+                if(rooms.get(i).getHotel().toString().equals(currHotel.toString())){
+                    currRooms.add(rooms.get(i));
+                }
+            }
+            contr.setHotel(currHotel);
+            contr.setRooms(currRooms);
         }
     }
 

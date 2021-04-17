@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -12,19 +14,7 @@ public class HotelController {
     private HotelDB db;
 
     @FXML
-    private TextField fxlocation;
-    @FXML
-    private TextField fxadults;
-    @FXML
-    private DatePicker fxcheckin;
-    @FXML
-    private DatePicker fxcheckout;
-    @FXML
-    private ListView<Hotel> fxhotels;
-    @FXML
-    private TextField fxminprice;
-    @FXML
-    private TextField fxmaxprice;
+    private ListView<HotelRoom> fxrooms;
 
     public HotelController(){
         db = new HotelDB();
@@ -55,4 +45,14 @@ public class HotelController {
         return db.getBookings(room);
     }
 
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+
+    }
+
+    public void setRooms(ArrayList<HotelRoom> rooms) {
+        this.rooms = rooms;
+        ObservableList<HotelRoom> list = FXCollections.observableArrayList(rooms);
+        fxrooms.setItems(list);
+    }
 }
