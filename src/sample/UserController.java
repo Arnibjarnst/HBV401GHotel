@@ -5,8 +5,6 @@ import javafx.scene.control.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-import java.awt.*;
-
 public class UserController {
 
     @FXML
