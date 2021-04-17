@@ -95,7 +95,7 @@ public class HotelController {
             System.out.println(currHotel);
             Parent root = FXMLLoader.load(getClass().getResource("roomView.fxml"));
             Stage stage = new Stage();
-            stage.setTitle("Booging.kom");
+            stage.setTitle(currHotel.toString());
             stage.setScene(new Scene(root, 1100, 700));
             stage.show();
         }
