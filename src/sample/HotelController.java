@@ -6,10 +6,10 @@ import javafx.scene.control.*;
 import java.util.ArrayList;
 
 public class HotelController {
-    private ArrayList<Hotel> hotels;
+    private Hotel hotel;
     private ArrayList<HotelRoom> rooms;
 
-    private MainDB db;
+    private HotelDB db;
 
     @FXML
     private TextField fxlocation;
@@ -27,7 +27,7 @@ public class HotelController {
     private TextField fxmaxprice;
 
     public HotelController(){
-        db = new MainDB();
+        db = new HotelDB();
     }
 
     public void addReview(int rating, String comment, String userName,Hotel hotel){
