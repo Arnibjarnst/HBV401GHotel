@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS reviews(
   	review VARCHAR(280),
   	username VARCHAR(40) NOT NULL,
   	PRIMARY KEY(hotelid, username)
-  );
+);
 
 CREATE TABLE IF NOT EXISTS bookings(
 	hotelid INTEGER NOT NULL,

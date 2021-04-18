@@ -38,7 +38,7 @@ public class UserDB {
         return -1;
     }
 
-    public Boolean LogInUser(String userName, String password){
+    public boolean logInUser(String userName, String password){
         Connection conn = connectToDB();
         boolean logInStatus = false;
         try{
@@ -51,5 +51,9 @@ public class UserDB {
             System.err.println(e.getMessage());
         }
         return logInStatus;
+    }
+    
+    public static void main(String[] args) {
+        
     }
 }
