@@ -12,6 +12,6 @@
         <Button layoutX="54.0" layoutY="240.0" mnemonicParsing="false" onAction="#SignUpHandler" prefHeight="41.0" prefWidth="83.0" text="Sign Up" />
       <TextField fx:id="fxEmail" layoutX="54.0" layoutY="122.0" prefHeight="32.0" prefWidth="197.0" promptText="Email:" />
       <PasswordField fx:id="fxPassword" layoutX="54.0" layoutY="180.0" prefHeight="32.0" prefWidth="197.0" promptText="Password:" />
-      <Label fx:id="fxLabel" layoutX="54.0" layoutY="296.0" prefHeight="41.0" prefWidth="197.0" />
+      <Label fx:id="fxLabel" layoutX="54.0" layoutY="296.0" prefHeight="58.0" prefWidth="197.0" />
     </children>
 </AnchorPane>

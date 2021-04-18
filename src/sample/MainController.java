@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class MainController {
+    public static String userName;
+
     private ArrayList<Hotel> hotels;
     private ArrayList<HotelRoom> rooms;
 
@@ -36,6 +38,7 @@ public class MainController {
 
     public MainController(){
         db = new MainDB();
+        userName = "";
     }
 
     public void searchHotelHandler(ActionEvent actionEvent){
