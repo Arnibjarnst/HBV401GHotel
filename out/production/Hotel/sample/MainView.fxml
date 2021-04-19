@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -18,5 +19,9 @@
       <TextField fx:id="fxmaxprice" layoutX="934.0" layoutY="192.0" prefHeight="38.0" prefWidth="149.0" promptText="max price" />
       <Button layoutX="1140.0" layoutY="30.0" mnemonicParsing="false" onAction="#logInHandler" prefHeight="27.0" prefWidth="88.0" text="Log In" />
       <Button layoutX="1140.0" layoutY="68.0" mnemonicParsing="false" onAction="#signUpHandler" prefHeight="27.0" prefWidth="88.0" text="Sign Up" />
+      <CheckBox fx:id="fxSingle" layoutX="934.0" layoutY="255.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="134.0" selected="true" text="Single Room" />
+      <CheckBox fx:id="fxDouble" layoutX="934.0" layoutY="293.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="134.0" selected="true" text="Double Room" />
+      <CheckBox fx:id="fxSuite" layoutX="934.0" layoutY="331.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="134.0" selected="true" text="Suite" />
+      <CheckBox fx:id="fxKing" layoutX="934.0" layoutY="370.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="134.0" selected="true" text="King Suite" />
    </children>
 </AnchorPane>

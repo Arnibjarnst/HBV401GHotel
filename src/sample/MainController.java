@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.stage.Stage;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainController {
@@ -35,6 +36,14 @@ public class MainController {
     private TextField fxminprice;
     @FXML
     private TextField fxmaxprice;
+    @FXML
+    private CheckBox fxSingle;
+    @FXML
+    private CheckBox fxDouble;
+    @FXML
+    private CheckBox fxSuite;
+    @FXML
+    private CheckBox fxKing;
 
     public MainController(){
         db = new MainDB();
@@ -78,8 +87,13 @@ public class MainController {
         } catch (IllegalArgumentException e){
             System.out.println(e);
         }
-
-        rooms = searchHotels(loc,begin,end,count,minprice,maxprice, "");
+        CheckBox types[] = {fxSingle,fxDouble,fxSuite,fxKing};
+        rooms = new ArrayList<>();
+        for(int i=0;i<types.length;i++){
+            if(types[i].isSelected()){
+                rooms.addAll(searchHotels(loc,begin,end,count,minprice,maxprice, types[i].getText()));
+            }
+        }
         hotels = new ArrayList<Hotel>();
         for(int i=0;i<rooms.size();i++){
             if(!hotels.contains(rooms.get(i).getHotel())){
@@ -101,7 +115,7 @@ public class MainController {
             stage.show();
 
             HotelController contr = loader.getController();
-            ArrayList<HotelRoom> currRooms = new ArrayList<HotelRoom>();
+            ArrayList<HotelRoom> currRooms = new ArrayList<>();
             for(int i=0;i<rooms.size();i++){
                 if(rooms.get(i).getHotel().toString().equals(currHotel.toString())){
                     currRooms.add(rooms.get(i));

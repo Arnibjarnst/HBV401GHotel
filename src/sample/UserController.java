@@ -25,11 +25,20 @@ public class UserController {
     }
 
     public void LogInHandler(ActionEvent actionEvent){
+        fxUsername.setStyle("");
+        fxPassword.setStyle("");
+
         String username = fxUsername.getText();
         String password = fxPassword.getText();
         boolean loggedIn = db.logInUser(username,password);
         if(loggedIn){
             MainController.userName = username;
+            fxLabel.setText("Log in successful");
+        }
+        else{
+            fxLabel.setText("Incorrect username or password");
+            fxUsername.setStyle("-fx-border-color: #FF0000;");
+            fxPassword.setStyle("-fx-border-color: #FF0000;");
         }
     }
 
