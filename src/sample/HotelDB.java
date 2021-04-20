@@ -1,7 +1,7 @@
 package sample;
 
-import java.sql.*;
-import java.util.ArrayList;
+        import java.sql.*;
+        import java.util.ArrayList;
 
 public class HotelDB {
     private static Connection connectToDB() {
@@ -93,11 +93,11 @@ public class HotelDB {
         try {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery("select username,checkin,checkout,julianday(checkout)-julianoday(checkout) " +
-                                            "from bookings,hotels " +
-                                            "where hotelid = id and " +
-                                            "roomtype like '" + room.getType() + "' " +
-                                            "and name like '" + room.getHotel().getName() + "'"
-                                            );
+                    "from bookings,hotels " +
+                    "where hotelid = id and " +
+                    "roomtype like '" + room.getType() + "' " +
+                    "and name like '" + room.getHotel().getName() + "'"
+            );
 
             while(rs.next()){
                 bookings.add(new Booking(rs.getString("username"),rs.getString("checkin"),rs.getString("checkout"),rs.getInt(4)*room.getPrice()));
