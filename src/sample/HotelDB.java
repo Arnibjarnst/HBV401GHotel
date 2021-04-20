@@ -19,7 +19,7 @@ public class HotelDB {
         Connection conn = connectToDB();
         try {
             Statement st = conn.createStatement();
-            st.executeUpdate("insert into bookings values('"+userName+"','" + ? +"','" + begin + "','" + end + "';");
+            //st.executeUpdate("insert into bookings values('"+userName+"','" + ? +"','" + begin + "','" + end + "';");
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }

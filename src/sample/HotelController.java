@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class HotelController {
     private Hotel hotel;
@@ -24,11 +25,40 @@ public class HotelController {
     private ListView<Review> fxReviews;
     @FXML
     private Label fxLabel;
+    @FXML
+    private DatePicker fxStartDate;
+    @FXML
+    private DatePicker fxEndDate;
+    @FXML
+    private TextField fxRoomCnt;
 
     public void bookHotelHandler(ActionEvent actionEvent){
         fxLabel.setText("");
         if(MainController.userName.length() == 0){
             fxLabel.setText("Log in to book a room");
+            return;
+        }
+        if(fxStartDate.getValue() == null || fxEndDate.getValue() == null){
+            fxLabel.setText("Must pick a booking date and end date");
+            return;
+        }
+        if(fxStartDate.getValue().compareTo(fxEndDate.getValue()) >= 0){
+            fxLabel.setText("Start must be before end");
+            return;
+        }
+        if(fxRooms.getSelectionModel().getSelectedItem() == null){
+            fxLabel.setText("please select a room type");
+            return;
+        }
+        try{
+            int x = Integer.parseInt(fxRoomCnt.getText());
+            if(fxRoomCnt.getText().equals("") || x < 0){
+                fxLabel.setText("Please specify how many rooms you'd like, must be a positive integer");
+                return;
+            }
+        } catch (Exception e){
+            fxLabel.setText("Please specify how many rooms you'd like, must be a positive integer");
+            System.out.print(e);
             return;
         }
         HotelRoom room = fxRooms.getSelectionModel().getSelectedItem();
