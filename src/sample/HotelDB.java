@@ -16,7 +16,13 @@ public class HotelDB {
     }
 
     public static void insertBooking(String userName,HotelRoom room,String begin, String end){
-
+        Connection conn = connectToDB();
+        try {
+            Statement st = conn.createStatement();
+            st.executeUpdate("insert into bookings values('"+userName+"','" + ? +"','" + begin + "','" + end + "';");
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     public static void deleteBooking(String userName, HotelRoom room, String begin){

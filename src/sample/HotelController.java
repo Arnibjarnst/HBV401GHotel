@@ -22,10 +22,13 @@ public class HotelController {
     private ListView<HotelRoom> fxRooms;
     @FXML
     private ListView<Review> fxReviews;
+    @FXML
+    private Label fxLabel;
 
     public void bookHotelHandler(ActionEvent actionEvent){
+        fxLabel.setText("");
         if(MainController.userName.length() == 0){
-            //...
+            fxLabel.setText("Log in to book a room");
             return;
         }
         HotelRoom room = fxRooms.getSelectionModel().getSelectedItem();

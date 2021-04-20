@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.stage.Stage;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainController {
