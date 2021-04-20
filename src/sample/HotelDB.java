@@ -23,7 +23,7 @@ public class HotelDB {
             ResultSet rs = st2.executeQuery("select id from hotels where name like '" + room.getHotel().getName() + "'");
             rs.next();
             int id = rs.getInt("id");
-            rs = st2.executeQuery("select sum(personcount) " +
+            rs = st2.executeQuery("select sum(persons) " +
                     "from bookings " +
                     "where hotelid = " + id +
                     " and roomtype like '" + room.getType() + "' " +
