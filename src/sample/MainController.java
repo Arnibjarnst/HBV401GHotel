@@ -111,7 +111,7 @@ public class MainController {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle(currHotel.toString());
-            stage.setScene(new Scene(root, 1100, 700));
+            stage.setScene(new Scene(root, 600, 600));
             stage.show();
 
             HotelController contr = loader.getController();

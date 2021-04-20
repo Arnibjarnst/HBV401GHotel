@@ -2,8 +2,13 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -14,7 +19,31 @@ public class HotelController {
     private HotelDB db;
 
     @FXML
-    private ListView<HotelRoom> fxrooms;
+    private ListView<HotelRoom> fxRooms;
+    @FXML
+    private ListView<HotelRoom> fxReviews;
+
+    public boolean bookHotelHandler(ActionEvent actionEvent){
+        return true;
+    }
+
+    public void logInHandler(ActionEvent actionEvent) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LogInView.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Log In");
+        stage.setScene(new Scene(root, 300, 400));
+        stage.show();
+    }
+
+    public void signUpHandler(ActionEvent actionEvent) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUpView.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Sign Up");
+        stage.setScene(new Scene(root, 300, 400));
+        stage.show();
+    }
 
     public HotelController(){
         db = new HotelDB();
@@ -53,6 +82,6 @@ public class HotelController {
     public void setRooms(ArrayList<HotelRoom> rooms) {
         this.rooms = rooms;
         ObservableList<HotelRoom> list = FXCollections.observableArrayList(rooms);
-        fxrooms.setItems(list);
+        fxRooms.setItems(list);
     }
 }
