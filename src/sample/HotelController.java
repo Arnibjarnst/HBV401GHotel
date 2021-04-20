@@ -32,6 +32,10 @@ public class HotelController {
     @FXML
     private TextField fxRoomCnt;
 
+    public HotelController(){
+        db = new HotelDB();
+    }
+
     public void bookHotelHandler(ActionEvent actionEvent){
         fxLabel.setText("");
         if(MainController.userName.length() == 0){
@@ -46,13 +50,16 @@ public class HotelController {
             fxLabel.setText("Start must be before end");
             return;
         }
+        String begin = fxStartDate.getValue().toString();
+        String end = fxEndDate.getValue().toString();
         if(fxRooms.getSelectionModel().getSelectedItem() == null){
             fxLabel.setText("please select a room type");
             return;
         }
+        int x = Integer.MAX_VALUE;
         try{
-            int x = Integer.parseInt(fxRoomCnt.getText());
-            if(fxRoomCnt.getText().equals("") || x < 0){
+            x = Integer.parseInt(fxRoomCnt.getText());
+            if(fxRoomCnt.getText().equals("") || x <= 0){
                 fxLabel.setText("Please specify how many rooms you'd like, must be a positive integer");
                 return;
             }
@@ -62,7 +69,19 @@ public class HotelController {
             return;
         }
         HotelRoom room = fxRooms.getSelectionModel().getSelectedItem();
-        //db.insertBooking(MainController.userName.length(),room,begin,end);
+        int status = db.insertBooking(MainController.userName,room,begin,end,x);
+        if(status >= x){
+            fxLabel.setText("Booking successful");
+        }
+        else if(status == -1){
+            fxLabel.setText("unkown error");
+        }
+        else if(status == 0){
+            fxLabel.setText("no rooms available");
+        }
+        else{
+            fxLabel.setText("only " + status + " rooms available");
+        }
     }
 
     public void logInHandler(ActionEvent actionEvent) throws Exception{
@@ -83,10 +102,6 @@ public class HotelController {
         stage.show();
     }
 
-    public HotelController(){
-        db = new HotelDB();
-    }
-
     public void addReview(int rating, String comment, String userName,Hotel hotel){
         Review review = new Review(rating,comment,userName);
         db.insertReview(review, hotel);
@@ -100,9 +115,11 @@ public class HotelController {
         return db.getReviews(hotel);
     }
 
+    /*
     public void addBooking(String userName, HotelRoom room, String begin, String end){
         db.insertBooking(userName,room,begin,end);
     }
+    */
 
     public void cancelBooking(String userName, HotelRoom room, String begin){
         db.deleteBooking(userName,room,begin);

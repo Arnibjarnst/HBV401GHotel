@@ -35,6 +35,15 @@ public class UserDB {
         }  catch (SQLException e) {
             System.err.println(e.getMessage());
         }
+        finally{
+            try{
+                if(conn != null)
+                    conn.close();
+            }
+            catch(SQLException e){
+                System.err.println(e);
+            }
+        }
         return -1;
     }
 
@@ -52,8 +61,8 @@ public class UserDB {
         }
         return logInStatus;
     }
-    
+
     public static void main(String[] args) {
-        
+
     }
 }

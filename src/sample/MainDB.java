@@ -35,7 +35,7 @@ public class MainDB {
                         "' and checkout >= '" + begin + "'");
                 if(rs.getInt("roomcount") - reviews.getInt(1) >= count){
                     Hotel hotel = new Hotel(rs.getString("name"),rs.getString("location"));
-                    rooms.add(new HotelRoom(hotel,rs.getString("roomtype"),rs.getDouble("price")));
+                    rooms.add(new HotelRoom(hotel,rs.getString("roomtype"),rs.getInt("roomcount"),rs.getDouble("price")));
                 }
             }
         } catch (SQLException e) {

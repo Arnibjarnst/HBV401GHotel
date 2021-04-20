@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.control.TableView;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -23,23 +25,35 @@ public class HotelDB {
             ResultSet rs = st2.executeQuery("select id from hotels where name like '" + room.getHotel().getName() + "'");
             rs.next();
             int id = rs.getInt("id");
+
             rs = st2.executeQuery("select sum(persons) " +
-                    "from bookings " +
+                    "from bookings natural join hotelrooms " +
                     "where hotelid = " + id +
                     " and roomtype like '" + room.getType() + "' " +
                     " and checkin <= '" + end +
-                    "' and checkout >= '" + begin + "'");
+                    "' and checkout >= '" + begin + "';");
             rs.next();
             int num = rs.getInt(1);
+            System.out.println(room.getCount() +" " + num);
             if(room.getCount() - num < count){
-                return num;
+                return room.getCount()-num;
             }
             for(int i = 0; i < count; i++) {
-                st.executeUpdate("insert into bookings values('" + userName + "'," + id + ",'" + room.getType() + "','" + begin + "','" + end + "';");
+                System.out.println(i);
+                st.executeUpdate("insert into bookings values( "+ id + " ,'" + userName + "','" + room.getType() + "','" + begin + "','" + end + "');");
             }
             return room.getCount() - num;
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+        }
+        finally{
+            try{
+                if(conn != null)
+                    conn.close();
+            }
+            catch(SQLException e){
+                System.err.println(e);
+            }
         }
         return -1;
     }
