@@ -2,7 +2,6 @@ DROP TABLE IF EXISTS hotels;
 DROP TABLE IF EXISTS hotelrooms;
 DROP TABLE IF EXISTS reviews;
 DROP TABLE IF EXISTS bookings;
-DROP TABLE IF EXISTS users;
 
 CREATE TABLE IF NOT EXISTS hotels(
 	id INTEGER NOT NULL PRIMARY KEY,
@@ -16,6 +15,7 @@ CREATE TABLE IF NOT EXISTS hotelrooms(
     roomtype VARCHAR(40),
     roomcount INTEGER,
     price FLOAT,
+	personCount INTEGER NOT NULL,
 	PRIMARY KEY(hotelid, roomtype),
 	FOREIGN KEY(hotelid) REFERENCES hotels(id)
 );
@@ -25,9 +25,8 @@ CREATE TABLE IF NOT EXISTS reviews(
   	rating FLOAT,
   	review VARCHAR(280),
   	username VARCHAR(40) NOT NULL,
-  	PRIMARY KEY(hotelid,username),
-  	FOREIGN KEY(username) REFERENCES users(username)
-);
+  	PRIMARY KEY(hotelid, username)
+  );
 
 CREATE TABLE IF NOT EXISTS bookings(
 	hotelid INTEGER NOT NULL,
@@ -35,20 +34,9 @@ CREATE TABLE IF NOT EXISTS bookings(
 	roomtype VARCHAR(40),
 	checkin DATE,
 	checkout DATE,
-	FOREIGN KEY (hotelid,roomtype) REFERENCES hotelrooms(hotelid,roomtype),
-	FOREIGN KEY (username) REFERENCES users(username)
+	FOREIGN KEY (hotelid,roomtype) REFERENCES hotelrooms(hotelid,roomtype)
 );
 
-CREATE TABLE IF NOT EXISTS users(
-    username VARCHAR(40) NOT NULL,
-    email VARCHAR(40) NOT NULL,
-    password VARCHAR(40) NOT NULL,
-    PRIMARY KEY(username)
-);
-
-insert into users VALUES('jon','jon@jon.is', '123');
-insert into users VALUES('arni', 'arni@arni.is', '1234');
-insert into users VALUES('admin', 'admin@admin.is', 'admin');
 
 insert into hotels VALUES(1,'Kea', 'Akureyri', 3);
 insert into hotels VALUES(2, 'Hilton', 'London', 4);
@@ -61,33 +49,33 @@ insert into hotels VALUES(8, 'Citadines', 'Tokyo', 3);
 insert into hotels VALUES(9, 'Exsaison', 'Tokyo', 2);
 insert into hotels VALUES(10, 'Marriot', 'New York', 4);
 insert into hotels VALUES(11, 'Marriot', 'London', 4);
-insert into hotelrooms VALUES(1, 'single room', 10, 5000);
-insert into hotelrooms VALUES(1, 'double room', 8, 8000);
-insert into hotelrooms VALUES(1, 'suite', 2, 16000);
-insert into hotelrooms VALUES(2, 'single room', 50, 10000);
-insert into hotelrooms VALUES(2, 'double room', 20, 20000);
-insert into hotelrooms VALUES(2, 'suite', 3, 45000);
-insert into hotelrooms VALUES(3, 'single room', 25, 10000);
-insert into hotelrooms VALUES(3, 'double room', 17, 17000);
-insert into hotelrooms VALUES(3, 'suite', 10, 20000);
-insert into hotelrooms VALUES(3, 'king suite', 3, 45000);
-insert into hotelrooms VALUES(4, 'double room', 40, 15000);
-insert into hotelrooms VALUES(4, 'suite', 5, 25000);
-insert into hotelrooms VALUES(5, 'single room', 60, 10000);
-insert into hotelrooms VALUES(5, 'double room', 25, 20000);
-insert into hotelrooms VALUES(5, 'suite', 5, 50000);
-insert into hotelrooms VALUES(6, 'double room', 20, 6000);
-insert into hotelrooms VALUES(6, 'suite', 5, 15000);
-insert into hotelrooms VALUES(7, 'single room', 100, 8000);
-insert into hotelrooms VALUES(7, 'double room', 50, 20000);
-insert into hotelrooms VALUES(7, 'suite', 10, 50000);
-insert into hotelrooms VALUES(7, 'king suite', 1, 100000);
-insert into hotelrooms VALUES(8, 'double room', 20, 5000);
-insert into hotelrooms VALUES(9, 'double room', 10, 4000);
-insert into hotelrooms VALUES(10, 'single double', 20, 6000);
-insert into hotelrooms VALUES(10, 'double room', 10, 15000);
-insert into hotelrooms VALUES(11, 'double room', 30, 10000);
-insert into hotelrooms VALUES(11, 'suite', 10, 20000);
+insert into hotelrooms VALUES(1, 'single room', 10, 5000, 1);
+insert into hotelrooms VALUES(1, 'double room', 8, 8000, 2);
+insert into hotelrooms VALUES(1, 'suite', 2, 16000, 4);
+insert into hotelrooms VALUES(2, 'single room', 50, 10000, 1);
+insert into hotelrooms VALUES(2, 'double room', 20, 20000, 2);
+insert into hotelrooms VALUES(2, 'suite', 3, 45000, 4);
+insert into hotelrooms VALUES(3, 'single room', 25, 10000, 1);
+insert into hotelrooms VALUES(3, 'double room', 17, 17000, 2);
+insert into hotelrooms VALUES(3, 'suite', 10, 20000, 4);
+insert into hotelrooms VALUES(3, 'king suite', 3, 45000, 5);
+insert into hotelrooms VALUES(4, 'double room', 40, 15000, 2);
+insert into hotelrooms VALUES(4, 'suite', 5, 25000, 4);
+insert into hotelrooms VALUES(5, 'single room', 60, 10000, 1);
+insert into hotelrooms VALUES(5, 'double room', 25, 20000, 2);
+insert into hotelrooms VALUES(5, 'suite', 5, 50000, 4);
+insert into hotelrooms VALUES(6, 'double room', 20, 6000, 2);
+insert into hotelrooms VALUES(6, 'suite', 5, 15000, 4);
+insert into hotelrooms VALUES(7, 'single room', 100, 8000, 1);
+insert into hotelrooms VALUES(7, 'double room', 50, 20000, 2);
+insert into hotelrooms VALUES(7, 'suite', 10, 50000, 4);
+insert into hotelrooms VALUES(7, 'king suite', 1, 100000, 5);
+insert into hotelrooms VALUES(8, 'double room', 20, 5000, 2);
+insert into hotelrooms VALUES(9, 'double room', 10, 4000, 2);
+insert into hotelrooms VALUES(10, 'single room', 20, 6000, 1);
+insert into hotelrooms VALUES(10, 'double room', 10, 15000, 2);
+insert into hotelrooms VALUES(11, 'double room', 30, 10000, 2);
+insert into hotelrooms VALUES(11, 'suite', 10, 20000, 5);
 insert into reviews VALUES(1, 4.5, 'Amazing', 'JesusKrist');
 insert into reviews VALUES(2, 3.5, 'Noice', 'HakonLitli');
 insert into reviews VALUES(3, 2.5, 'Meh', 'Hjaltalin7');
@@ -117,27 +105,27 @@ insert into reviews VALUES(11, 4, 'Staff was nice', 'JFK');
 insert into bookings VALUES(1, 'JesusKrist', 'single room', '2020-01-19', '2020-01-26');
 insert into bookings VALUES(1, 'AnnaLara20', 'double room', '2019-02-19', '2020-02-26');
 insert into bookings VALUES(1, 'DiegoB2434', 'suite', '2019-03-19', '2020-03-26');
-insert into bookings VALUES(2, 'Sigthor405', 'Queen deluxe room', '2019-04-19', '2020-04-26');
-insert into bookings VALUES(2, 'HakonLitli', 'King Executive suite', '2019-05-19', '2020-05-26');
-insert into bookings VALUES(2, 'IsakArniJ2', 'double room', '2019-06-19', '2020-06-26');
-insert into bookings VALUES(3, 'Hjaltalin7', 'Superior room', '2019-07-19', '2020-07-26');
-insert into bookings VALUES(3, 'ArniBjarns', 'King executive suite', '2020-01-19', '2020-01-26');
-insert into bookings VALUES(4, 'JonaAlexPe', 'double room', '2020-02-19', '2020-02-26');
-insert into bookings VALUES(4, 'DiscordGuy', 'suite', '2020-03-19', '2020-03-26');
-insert into bookings VALUES(5, 'IsakLoftss', 'double room', '2020-04-19', '2020-04-26');
-insert into bookings VALUES(5, 'HakonOrnHa', 'suite', '2020-05-19', '2020-05-26');
-insert into bookings VALUES(5, 'KariJohann', 'King Executive room', '2020-06-19', '2020-06-26');
-insert into bookings VALUES(6, 'AnnaSigga2', 'double room', '2020-07-19', '2020-07-26');
+insert into bookings VALUES(2, 'Sigthor405', 'single rooom', '2019-04-19', '2020-04-26');
+insert into bookings VALUES(2, 'HakonLitli', 'double room', '2019-05-19', '2020-05-26');
+insert into bookings VALUES(2, 'IsakArniJ2', 'suite', '2019-06-19', '2020-06-26');
+insert into bookings VALUES(3, 'Hjaltalin7', 'single room', '2019-07-19', '2020-07-26');
+insert into bookings VALUES(3, 'ArniBjarns', 'double room', '2020-01-19', '2020-01-26');
+insert into bookings VALUES(3, 'JonaAlexPe', 'suite', '2020-02-19', '2020-02-26');
+insert into bookings VALUES(3, 'DiscordGuy', 'king suite', '2020-03-19', '2020-03-26');
+insert into bookings VALUES(4, 'IsakLoftss', 'double room', '2020-04-19', '2020-04-26');
+insert into bookings VALUES(4, 'HakonOrnHa', 'suite', '2020-05-19', '2020-05-26');
+insert into bookings VALUES(5, 'KariJohann', 'single room', '2020-06-19', '2020-06-26');
+insert into bookings VALUES(5, 'AnnaSigga2', 'double room', '2020-07-19', '2020-07-26');
 insert into bookings VALUES(6, 'LarusGummi', 'suite', '2020-08-19', '2020-08-26');
-insert into bookings VALUES(7, 'NinjaBunny', 'double room', '2020-09-19', '2020-09-26');
-insert into bookings VALUES(7, 'GeirHHorde', 'suite', '2020-10-19', '2020-10-26');
-insert into bookings VALUES(7, 'OlafurRagn', 'King Executive Suite', '2020-11-19', '2020-11-26');
-insert into bookings VALUES(7, 'Grimson243', 'Superior King Suite', '2020-12-19', '2020-12-26');
-insert into bookings VALUES(8, 'DarriMarTh', 'double room', '2020-01-19', '2020-01-26');
-insert into bookings VALUES(10, 'BaldurThor', 'junior suite', '2020-02-19', '2020-02-26');
-insert into bookings VALUES(11, 'Gudmundur6', 'suite', '2020-03-19', '2020-03-26');
+insert into bookings VALUES(6, 'NinjaBunny', 'double room', '2020-09-19', '2020-09-26');
+insert into bookings VALUES(6, 'GeirHHorde', 'suite', '2020-10-19', '2020-10-26');
+insert into bookings VALUES(7, 'OlafurRagn', 'single room', '2020-11-19', '2020-11-26');
+insert into bookings VALUES(7, 'Grimson243', 'double room', '2020-12-19', '2020-12-26');
+insert into bookings VALUES(7, 'DarriMarTh', 'suite', '2020-01-19', '2020-01-26');
+insert into bookings VALUES(7, 'BaldurThor', 'king suite', '2020-02-19', '2020-02-26');
+insert into bookings VALUES(8, 'Gudmundur6', 'double room', '2020-03-19', '2020-03-26');
 insert into bookings VALUES(9, 'LifandiJon', 'double room', '2020-04-19', '2020-04-26');
-insert into bookings VALUES(8, 'DarriMarTh', 'double room', '2020-01-19', '2020-01-26');
-insert into bookings VALUES(10, 'BaldurThor', 'junior suite', '2020-02-19', '2020-02-26');
-insert into bookings VALUES(11, 'Gudmundur6', 'suite', '2020-03-19', '2020-03-26');
-insert into bookings VALUES(9, 'LifandiJon', 'double room', '2020-04-19', '2020-04-26');
+insert into bookings VALUES(10, 'DarriMarTh', 'single room', '2020-01-19', '2020-01-26');
+insert into bookings VALUES(10, 'BaldurThor', 'double room', '2020-02-19', '2020-02-26');
+insert into bookings VALUES(11, 'Gudmundur6', 'double room', '2020-03-19', '2020-03-26');
+insert into bookings VALUES(11, 'LifandiJon', 'suite', '2020-04-19', '2020-04-26');
