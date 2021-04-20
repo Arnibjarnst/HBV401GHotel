@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS hotelrooms(
     roomtype VARCHAR(40),
     roomcount INTEGER,
     price FLOAT,
+	persons INTEGER,
 	PRIMARY KEY(hotelid, roomtype),
 	FOREIGN KEY(hotelid) REFERENCES hotels(id)
 );
@@ -61,33 +62,33 @@ insert into hotels VALUES(8, 'Citadines', 'Tokyo', 3);
 insert into hotels VALUES(9, 'Exsaison', 'Tokyo', 2);
 insert into hotels VALUES(10, 'Marriot', 'New York', 4);
 insert into hotels VALUES(11, 'Marriot', 'London', 4);
-insert into hotelrooms VALUES(1, 'single room', 10, 5000);
-insert into hotelrooms VALUES(1, 'double room', 8, 8000);
-insert into hotelrooms VALUES(1, 'suite', 2, 16000);
-insert into hotelrooms VALUES(2, 'single room', 50, 10000);
-insert into hotelrooms VALUES(2, 'double room', 20, 20000);
-insert into hotelrooms VALUES(2, 'suite', 3, 45000);
-insert into hotelrooms VALUES(3, 'single room', 25, 10000);
-insert into hotelrooms VALUES(3, 'double room', 17, 17000);
-insert into hotelrooms VALUES(3, 'suite', 10, 20000);
-insert into hotelrooms VALUES(3, 'king suite', 3, 45000);
-insert into hotelrooms VALUES(4, 'double room', 40, 15000);
-insert into hotelrooms VALUES(4, 'suite', 5, 25000);
-insert into hotelrooms VALUES(5, 'single room', 60, 10000);
-insert into hotelrooms VALUES(5, 'double room', 25, 20000);
-insert into hotelrooms VALUES(5, 'suite', 5, 50000);
-insert into hotelrooms VALUES(6, 'double room', 20, 6000);
-insert into hotelrooms VALUES(6, 'suite', 5, 15000);
-insert into hotelrooms VALUES(7, 'single room', 100, 8000);
-insert into hotelrooms VALUES(7, 'double room', 50, 20000);
-insert into hotelrooms VALUES(7, 'suite', 10, 50000);
-insert into hotelrooms VALUES(7, 'king suite', 1, 100000);
-insert into hotelrooms VALUES(8, 'double room', 20, 5000);
-insert into hotelrooms VALUES(9, 'double room', 10, 4000);
-insert into hotelrooms VALUES(10, 'single double', 20, 6000);
-insert into hotelrooms VALUES(10, 'double room', 10, 15000);
-insert into hotelrooms VALUES(11, 'double room', 30, 10000);
-insert into hotelrooms VALUES(11, 'suite', 10, 20000);
+insert into hotelrooms VALUES(1, 'single room', 10, 5000, 1);
+insert into hotelrooms VALUES(1, 'double room', 8, 8000, 2);
+insert into hotelrooms VALUES(1, 'suite', 2, 16000, 2);
+insert into hotelrooms VALUES(2, 'single room', 50, 10000, 1);
+insert into hotelrooms VALUES(2, 'double room', 20, 20000, 2);
+insert into hotelrooms VALUES(2, 'suite', 3, 45000, 2);
+insert into hotelrooms VALUES(3, 'single room', 25, 10000, 1);
+insert into hotelrooms VALUES(3, 'double room', 17, 17000, 2);
+insert into hotelrooms VALUES(3, 'suite', 10, 20000, 2);
+insert into hotelrooms VALUES(3, 'king suite', 3, 45000, 4);
+insert into hotelrooms VALUES(4, 'double room', 40, 15000, 2);
+insert into hotelrooms VALUES(4, 'suite', 5, 25000, 2);
+insert into hotelrooms VALUES(5, 'single room', 60, 10000, 1);
+insert into hotelrooms VALUES(5, 'double room', 25, 20000, 2);
+insert into hotelrooms VALUES(5, 'suite', 5, 50000, 2);
+insert into hotelrooms VALUES(6, 'double room', 20, 6000, 2);
+insert into hotelrooms VALUES(6, 'suite', 5, 15000, 3);
+insert into hotelrooms VALUES(7, 'single room', 100, 8000, 1);
+insert into hotelrooms VALUES(7, 'double room', 50, 20000, 2);
+insert into hotelrooms VALUES(7, 'suite', 10, 50000, 2);
+insert into hotelrooms VALUES(7, 'king suite', 1, 100000, 4);
+insert into hotelrooms VALUES(8, 'double room', 20, 5000, 2);
+insert into hotelrooms VALUES(9, 'double room', 10, 4000, 2);
+insert into hotelrooms VALUES(10, 'single double', 20, 6000, 1);
+insert into hotelrooms VALUES(10, 'double room', 10, 15000, 2);
+insert into hotelrooms VALUES(11, 'double room', 30, 10000, 2);
+insert into hotelrooms VALUES(11, 'suite', 10, 20000, 3);
 insert into reviews VALUES(1, 4.5, 'Amazing', 'JesusKrist');
 insert into reviews VALUES(2, 3.5, 'Noice', 'HakonLitli');
 insert into reviews VALUES(3, 2.5, 'Meh', 'Hjaltalin7');
