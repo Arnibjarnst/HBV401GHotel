@@ -21,10 +21,15 @@ public class HotelController {
     @FXML
     private ListView<HotelRoom> fxRooms;
     @FXML
-    private ListView<HotelRoom> fxReviews;
+    private ListView<Review> fxReviews;
 
-    public boolean bookHotelHandler(ActionEvent actionEvent){
-        return true;
+    public void bookHotelHandler(ActionEvent actionEvent){
+        if(MainController.userName.length() == 0){
+            //...
+            return;
+        }
+        HotelRoom room = fxRooms.getSelectionModel().getSelectedItem();
+        //db.insertBooking(MainController.userName.length(),room,begin,end);
     }
 
     public void logInHandler(ActionEvent actionEvent) throws Exception{
@@ -76,12 +81,17 @@ public class HotelController {
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
-
     }
 
     public void setRooms(ArrayList<HotelRoom> rooms) {
         this.rooms = rooms;
         ObservableList<HotelRoom> list = FXCollections.observableArrayList(rooms);
         fxRooms.setItems(list);
+    }
+
+    public void setReviews(Hotel hotel){
+        ArrayList<Review> reviews = getReviews(hotel);
+        ObservableList<Review> list = FXCollections.observableArrayList(reviews);
+        fxReviews.setItems(list);
     }
 }
