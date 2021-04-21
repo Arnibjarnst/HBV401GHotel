@@ -14,37 +14,45 @@ public class UserDB {
         return conn;
     }
 
-    public int insertUser(String userName, String email, String password){
+    private static void closeConnection(Connection conn){
+        try{
+            if(conn != null)
+                conn.close();
+        }
+        catch(SQLException e){
+            System.err.println(e);
+        }
+    }
+
+    public String insertUser(String userName, String email, String password){
         Connection conn = connectToDB();
         try {
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select email,password from users");
+            ResultSet rs = st.executeQuery("select * from users");
             boolean available_email = true;
             boolean available_password = true;
+            boolean available_username = true;
             while(rs.next()){
+                if(rs.getString("username").equals(userName)) available_username = false;
                 if(rs.getString("email").equals(email)) available_email = false;
                 if(rs.getString("password").equals(password)) available_password = false;
             }
-            if(available_email && available_password) {
+            if(available_email && available_password && available_username) {
                 st.executeUpdate("insert into users values('" + userName + "','" + email + "','" + password + "');");
-                return 0;
+                return "0";
             }
-            if(available_email) return 1;
-            if(available_password) return 2;
-            return 3;
+            String status = "1";
+            if(!available_username) status += 'u';
+            if(!available_email) status += 'e';
+            if(!available_password) status += 'p';
+            return status;
         }  catch (SQLException e) {
             System.err.println(e.getMessage());
         }
         finally{
-            try{
-                if(conn != null)
-                    conn.close();
-            }
-            catch(SQLException e){
-                System.err.println(e);
-            }
+            closeConnection(conn);
         }
-        return -1;
+        return "-1";
     }
 
     public boolean logInUser(String userName, String password){
@@ -58,6 +66,9 @@ public class UserDB {
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+        }
+        finally{
+            closeConnection(conn);
         }
         return logInStatus;
     }

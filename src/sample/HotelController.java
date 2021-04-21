@@ -125,9 +125,11 @@ public class HotelController {
         db.deleteBooking(userName,room,begin);
     }
 
+    /*
     public ArrayList<Booking> getBookings(HotelRoom room){
         return db.getBookings(room);
     }
+     */
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;

@@ -47,7 +47,6 @@ public class UserController {
     }
 
     public void SignUpHandler(ActionEvent actionEvent){
-        System.out.println(fxUsername.getStyle());
         fxLabel.setText("");
         fxUsername.setStyle("");
         fxEmail.setStyle("");
@@ -76,27 +75,28 @@ public class UserController {
             return;
         }
 
-        int result = db.insertUser(username,email,password);
+        String result = db.insertUser(username,email,password);
         String text = "";
-        if(result == -1) text = "unknown error";
-        else if(result == 0){
+        if(result.charAt(0) == '-') text = "unknown error";
+        else if(result.charAt(0)  == '0'){
             MainController.userName = username;
-            System.out.println(MainController.userName);
             Stage stage = (Stage) fxEmail.getScene().getWindow();
             stage.close();
         }
-        else if(result == 1){
-            text = "Password taken";
-            fxPassword.setStyle("-fx-border-color: #FF0000;");
-        }
-        else if(result == 2){
-            text = "Email taken";
-            fxEmail.setStyle("-fx-border-color: #FF0000;");
-        }
-        else{
-            text = "Password and Email taken";
-            fxPassword.setStyle("-fx-border-color: #FF0000;");
-            fxEmail.setStyle("-fx-border-color: #FF0000;");
+
+        for(int i = 1; i<result.length(); i++){
+            if(result.charAt(i) == 'u'){
+                text += "Username taken \n";
+                fxUsername.setStyle("-fx-border-color: #FF0000;");
+            }
+            if(result.charAt(i) == 'e'){
+                text += "Email taken \n";
+                fxEmail.setStyle("-fx-border-color: #FF0000;");
+            }
+            if(result.charAt(i) == 'p'){
+                text += "Password taken";
+                fxPassword.setStyle("-fx-border-color: #FF0000;");
+            }
         }
         fxLabel.setText(text);
     }

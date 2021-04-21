@@ -43,7 +43,8 @@ CREATE TABLE IF NOT EXISTS bookings(
 CREATE TABLE IF NOT EXISTS users(
     username VARCHAR(40) NOT NULL,
     email VARCHAR(40) NOT NULL,
-    password VARCHAR(40) NOT NULL
+    password VARCHAR(40) NOT NULL,
+    PRIMARY KEY(username)
 );
 
 insert into users VALUES('jon','jon@jon.is', '123');
@@ -84,7 +85,7 @@ insert into hotelrooms VALUES(7, 'suite', 10, 50000, 2);
 insert into hotelrooms VALUES(7, 'king suite', 1, 100000, 4);
 insert into hotelrooms VALUES(8, 'double room', 20, 5000, 2);
 insert into hotelrooms VALUES(9, 'double room', 10, 4000, 2);
-insert into hotelrooms VALUES(10, 'single double', 20, 6000, 1);
+insert into hotelrooms VALUES(10, 'single room', 20, 6000, 1);
 insert into hotelrooms VALUES(10, 'double room', 10, 15000, 2);
 insert into hotelrooms VALUES(11, 'double room', 30, 10000, 2);
 insert into hotelrooms VALUES(11, 'suite', 10, 20000, 3);

@@ -5,17 +5,14 @@ import java.util.ArrayList;
 public class HotelRoom {
     Hotel hotel;
     String type;
-    int size;
     int count;
     double price;
-    ArrayList<Booking> bookings;
 
     public HotelRoom(Hotel hotel, String type, int count, double price) {
         this.hotel = hotel;
         this.type = type;
         this.count = count;
         this.price = price;
-        this.bookings = new ArrayList<Booking>();
     }
 
     public String getType() {
@@ -26,13 +23,6 @@ public class HotelRoom {
         this.type = type;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
 
     public int getCount() {
         return count;
@@ -56,18 +46,6 @@ public class HotelRoom {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public ArrayList<Booking> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(ArrayList<Booking> bookings) {
-        this.bookings = bookings;
-    }
-
-    public void addBooking(Booking booking){
-        this.bookings.add(booking);
     }
 
     @Override

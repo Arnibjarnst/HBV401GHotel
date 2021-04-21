@@ -164,7 +164,6 @@ public class MainController {
         stage.setScene(new Scene(root, 300, 400));
         stage.show();
         stage.setOnHidden(e -> {
-            System.out.println("hey " + userName);
             if(userName.length() > 0){
                 setState(true);
             }
@@ -187,8 +186,16 @@ public class MainController {
         fxBookings.setVisible(state);
     }
 
-    public void openBookingsHandler(ActionEvent actionEvent){
+    public void openBookingsHandler(ActionEvent actionEvent) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("BookingView.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Sign Up");
+        stage.setScene(new Scene(root, 470, 400));
+        stage.show();
 
+        BookingController contr = loader.getController();
+        contr.setBookings(userName);
     }
 
     public void addReview(int rating, String comment, String userName,Hotel hotel){

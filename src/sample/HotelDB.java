@@ -17,6 +17,16 @@ public class HotelDB {
         return conn;
     }
 
+    private static void closeConnection(Connection conn){
+        try{
+            if(conn != null)
+                conn.close();
+        }
+        catch(SQLException e){
+            System.err.println(e);
+        }
+    }
+
     public static int insertBooking(String userName,HotelRoom room,String begin, String end, int count){
         Connection conn = connectToDB();
         try {
@@ -47,13 +57,7 @@ public class HotelDB {
             System.err.println(e.getMessage());
         }
         finally{
-            try{
-                if(conn != null)
-                    conn.close();
-            }
-            catch(SQLException e){
-                System.err.println(e);
-            }
+            closeConnection(conn);
         }
         return -1;
     }
@@ -70,6 +74,9 @@ public class HotelDB {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
+        finally{
+            closeConnection(conn);
+        }
     }
 
     public static void insertReview(Review review, Hotel hotel){
@@ -79,6 +86,9 @@ public class HotelDB {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
+        finally{
+            closeConnection(conn);
+        }
     }
 
     public static void deleteReview(String userName, Hotel hotel){
@@ -87,6 +97,9 @@ public class HotelDB {
             Statement st = conn.createStatement();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+        }
+        finally{
+            closeConnection(conn);
         }
     }
 
@@ -98,32 +111,10 @@ public class HotelDB {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
+        finally{
+            closeConnection(conn);
+        }
         return reviews;
     }
 
-    public static ArrayList<Booking> getBookings(HotelRoom room){
-        ArrayList<Booking> bookings = new ArrayList<Booking>();
-        Connection conn = connectToDB();
-        try {
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select username,checkin,checkout,julianday(checkout)-julianoday(checkout) " +
-                    "from bookings,hotels " +
-                    "where hotelid = id and " +
-                    "roomtype like '" + room.getType() + "' " +
-                    "and name like '" + room.getHotel().getName() + "'"
-            );
-
-            while(rs.next()){
-                bookings.add(new Booking(rs.getString("username"),rs.getString("checkin"),rs.getString("checkout"),rs.getInt(4)*room.getPrice()));
-            }
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-        return bookings;
-    }
-
-
-    public static void main(String[] args) {
-
-    }
 }

@@ -16,6 +16,16 @@ public class MainDB {
         return conn;
     }
 
+    private static void closeConnection(Connection conn){
+        try{
+            if(conn != null)
+                conn.close();
+        }
+        catch(SQLException e){
+            System.err.println(e);
+        }
+    }
+
     public static ArrayList<HotelRoom> getHotels(String location, String begin, String end, int count, double minprice, double maxprice, String type) {
         if(location.equals("")) location = "%";
         if(type.equals("")) type = "%";
@@ -40,6 +50,9 @@ public class MainDB {
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+        }
+        finally{
+            closeConnection(conn);
         }
         return rooms;
     }

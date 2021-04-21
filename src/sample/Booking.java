@@ -1,12 +1,14 @@
 package sample;
 
 public class Booking {
+    HotelRoom room;
     String userName;
     String begin;
     String end;
     double price;
 
-    public Booking(String userName, String begin, String end, double price) {
+    public Booking(HotelRoom room, String userName, String begin, String end, double price) {
+        this.room = room;
         this.userName = userName;
         this.begin = begin;
         this.end = end;
@@ -31,5 +33,13 @@ public class Booking {
 
     public double getPrice() {
         return price;
+    }
+
+    @Override
+    public String toString() {
+        return room.getHotel().toString() +
+                "  " + room.getType() +
+                "  " + begin + '/' + end +
+                "     " + price;
     }
 }
