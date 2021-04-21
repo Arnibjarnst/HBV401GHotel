@@ -55,7 +55,7 @@ insert into hotels VALUES(1,'Kea', 'Akureyri', 4);
 insert into hotels VALUES(2, 'Hotel Odinsvé', 'Reykjavík', 4);
 insert into hotels VALUES(3, 'Siglo Hotel', 'Siglufjörður', 4);
 insert into hotels VALUES(4, 'Icelandair Hotel Mývatn', 'Mývatn', 3);
-insert into hotels VALUES(5, 'Miðgarður by Center Hotels', 'REykjavík', 4);
+insert into hotels VALUES(5, 'Miðgarður by Center Hotels', 'Reykjavík', 4);
 insert into hotels VALUES(6, 'Hotel Skaftafell', 'Skaftafell', 3);
 insert into hotels VALUES(7, 'Hotel Grímsborgir', 'Ásborgir', 5);
 insert into hotels VALUES(8, 'Hotel Frón', 'Reykjavík', 3);
