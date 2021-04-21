@@ -43,8 +43,7 @@ CREATE TABLE IF NOT EXISTS bookings(
 CREATE TABLE IF NOT EXISTS users(
     username VARCHAR(40) NOT NULL,
     email VARCHAR(40) NOT NULL,
-    password VARCHAR(40) NOT NULL,
-    PRIMARY KEY(username)
+    password VARCHAR(40) NOT NULL
 );
 
 insert into users VALUES('jon','jon@jon.is', '123');

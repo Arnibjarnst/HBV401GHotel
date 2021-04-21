@@ -17,11 +17,13 @@
       <ListView fx:id="fxhotels" layoutX="19.0" layoutY="95.0" onMouseClicked="#chooseHotelHandler" prefHeight="543.0" prefWidth="872.0" />
       <TextField fx:id="fxminprice" layoutX="934.0" layoutY="137.0" prefHeight="38.0" prefWidth="149.0" promptText="min price" />
       <TextField fx:id="fxmaxprice" layoutX="934.0" layoutY="192.0" prefHeight="38.0" prefWidth="149.0" promptText="max price" />
-      <Button layoutX="1140.0" layoutY="30.0" mnemonicParsing="false" onAction="#logInHandler" prefHeight="27.0" prefWidth="88.0" text="Log In" />
-      <Button layoutX="1140.0" layoutY="68.0" mnemonicParsing="false" onAction="#signUpHandler" prefHeight="27.0" prefWidth="88.0" text="Sign Up" />
+      <Button fx:id="fxLogIn" layoutX="1140.0" layoutY="30.0" mnemonicParsing="false" onAction="#logInHandler" prefHeight="27.0" prefWidth="88.0" text="Log In" />
+      <Button fx:id="fxSignUp" layoutX="1140.0" layoutY="68.0" mnemonicParsing="false" onAction="#signUpHandler" prefHeight="27.0" prefWidth="88.0" text="Sign Up" />
       <CheckBox fx:id="fxSingle" layoutX="934.0" layoutY="255.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="134.0" selected="true" text="Single Room" />
       <CheckBox fx:id="fxDouble" layoutX="934.0" layoutY="293.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="134.0" selected="true" text="Double Room" />
       <CheckBox fx:id="fxSuite" layoutX="934.0" layoutY="331.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="134.0" selected="true" text="Suite" />
       <CheckBox fx:id="fxKing" layoutX="934.0" layoutY="370.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="134.0" selected="true" text="King Suite" />
+      <Button fx:id="fxBookings" layoutX="1140.0" layoutY="68.0" mnemonicParsing="false" onAction="#openBookingsHandler" prefHeight="27.0" prefWidth="88.0" text="Bookings" visible="false" />
+      <Button fx:id="fxLogOut" layoutX="1140.0" layoutY="30.0" mnemonicParsing="false" onAction="#logOutHandler" prefHeight="27.0" prefWidth="88.0" text="Log Out" visible="false" />
    </children>
 </AnchorPane>

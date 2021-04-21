@@ -43,6 +43,14 @@ public class MainController {
     private CheckBox fxSuite;
     @FXML
     private CheckBox fxKing;
+    @FXML
+    private Button fxLogIn;
+    @FXML
+    private Button fxLogOut;
+    @FXML
+    private Button fxSignUp;
+    @FXML
+    private Button fxBookings;
 
     public MainController(){
         db = new MainDB();
@@ -137,6 +145,15 @@ public class MainController {
         stage.setTitle("Log In");
         stage.setScene(new Scene(root, 300, 400));
         stage.show();
+        stage.setOnHidden(e -> {
+            if(userName.length() > 0){
+                setState(true);
+            }
+            else{
+                setState(false);
+            }
+            stage.close();
+        });
     }
 
     public void signUpHandler(ActionEvent actionEvent) throws Exception{
@@ -146,6 +163,32 @@ public class MainController {
         stage.setTitle("Sign Up");
         stage.setScene(new Scene(root, 300, 400));
         stage.show();
+        stage.setOnHidden(e -> {
+            System.out.println("hey " + userName);
+            if(userName.length() > 0){
+                setState(true);
+            }
+            else{
+                setState(false);
+            }
+            stage.close();
+        });
+    }
+
+    public void logOutHandler(ActionEvent actionEvent){
+        userName = "";
+        setState(false);
+    }
+
+    private void setState(boolean state){
+        fxLogIn.setVisible(!state);
+        fxLogOut.setVisible(state);
+        fxSignUp.setVisible(!state);
+        fxBookings.setVisible(state);
+    }
+
+    public void openBookingsHandler(ActionEvent actionEvent){
+
     }
 
     public void addReview(int rating, String comment, String userName,Hotel hotel){

@@ -1,9 +1,12 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,7 +36,8 @@ public class UserController {
         boolean loggedIn = db.logInUser(username,password);
         if(loggedIn){
             MainController.userName = username;
-            fxLabel.setText("Log in successful");
+            Stage stage = (Stage) fxPassword.getScene().getWindow();
+            stage.close();
         }
         else{
             fxLabel.setText("Incorrect username or password");
@@ -72,13 +76,14 @@ public class UserController {
             return;
         }
 
-        System.out.println(fxPassword.getStyle());
-
         int result = db.insertUser(username,email,password);
         String text = "";
         if(result == -1) text = "unknown error";
         else if(result == 0){
-            text = "Successful Sign Up";
+            MainController.userName = username;
+            System.out.println(MainController.userName);
+            Stage stage = (Stage) fxEmail.getScene().getWindow();
+            stage.close();
         }
         else if(result == 1){
             text = "Password taken";
