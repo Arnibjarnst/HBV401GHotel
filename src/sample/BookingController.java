@@ -7,13 +7,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
+import java.awt.print.Book;
 import java.util.ArrayList;
 
 public class BookingController {
     BookingDB db;
 
     @FXML
-    private ListView fxBookings;
+    private ListView<Booking> fxBookings;
     @FXML
     private Label fxLabel;
 
@@ -29,8 +30,11 @@ public class BookingController {
 
     public void cancelBookingHandler(ActionEvent actionEvent){
         if(fxBookings.getSelectionModel().getSelectedItem() == null){
-            fxLabel.setText("please select a booking to cancel");
+            fxLabel.setText("Select a booking to cancel");
             return;
         }
+        Booking booking = fxBookings.getSelectionModel().getSelectedItem();
+        db.deleteBooking(booking.getUserName(),booking.getRoom(),booking.getBegin(),booking.getEnd());
+        setBookings(MainController.userName);
     }
 }

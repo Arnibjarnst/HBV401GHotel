@@ -31,6 +31,14 @@ public class Booking {
         return end;
     }
 
+    public HotelRoom getRoom() {
+        return room;
+    }
+
+    public void setRoom(HotelRoom room) {
+        this.room = room;
+    }
+
     public double getPrice() {
         return price;
     }

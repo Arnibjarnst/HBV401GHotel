@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class HotelDB {
-    private static Connection connectToDB() {
+    private Connection connectToDB() {
         Connection conn = null;
         try {
             Class.forName("org.sqlite.JDBC");
@@ -17,7 +17,7 @@ public class HotelDB {
         return conn;
     }
 
-    private static void closeConnection(Connection conn){
+    private void closeConnection(Connection conn){
         try{
             if(conn != null)
                 conn.close();
@@ -27,7 +27,7 @@ public class HotelDB {
         }
     }
 
-    public static int insertBooking(String userName,HotelRoom room,String begin, String end, int count){
+    public int insertBooking(String userName,HotelRoom room,String begin, String end, int count){
         Connection conn = connectToDB();
         try {
             Statement st = conn.createStatement();
@@ -50,6 +50,7 @@ public class HotelDB {
             }
             for(int i = 0; i < count; i++) {
                 System.out.println(i);
+                System.out.println(begin + " " + end);
                 st.executeUpdate("insert into bookings values( "+ id + " ,'" + userName + "','" + room.getType() + "','" + begin + "','" + end + "');");
             }
             return room.getCount() - num;
@@ -62,24 +63,7 @@ public class HotelDB {
         return -1;
     }
 
-    public static void deleteBooking(String userName, HotelRoom room, String begin){
-        Connection conn = connectToDB();
-        try {
-            Statement st = conn.createStatement();
-            Statement st2 = conn.createStatement();
-            ResultSet rs = st2.executeQuery("select id from hotels where name like '" + room.getHotel().getName() + "'");
-            rs.next();
-            int id = rs.getInt("id");
-            st.executeUpdate("delete from bookings where username like '" + userName + "' and hotelid = " + id + " and roomtype like '" + room.getType() + "' and checkin = '" + begin + "';");
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-        finally{
-            closeConnection(conn);
-        }
-    }
-
-    public static void insertReview(Review review, Hotel hotel){
+    public void insertReview(Review review, Hotel hotel){
         Connection conn = connectToDB();
         try {
             Statement st = conn.createStatement();
@@ -91,7 +75,7 @@ public class HotelDB {
         }
     }
 
-    public static void deleteReview(String userName, Hotel hotel){
+    public void deleteReview(String userName, Hotel hotel){
         Connection conn = connectToDB();
         try {
             Statement st = conn.createStatement();
@@ -103,7 +87,7 @@ public class HotelDB {
         }
     }
 
-    public static ArrayList<Review> getReviews(Hotel hotel){
+    public ArrayList<Review> getReviews(Hotel hotel){
         ArrayList<Review> reviews = new ArrayList<Review>();
         Connection conn = connectToDB();
         try {

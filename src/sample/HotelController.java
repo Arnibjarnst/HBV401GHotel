@@ -119,13 +119,12 @@ public class HotelController {
     public void addBooking(String userName, HotelRoom room, String begin, String end){
         db.insertBooking(userName,room,begin,end);
     }
-    */
+
 
     public void cancelBooking(String userName, HotelRoom room, String begin){
         db.deleteBooking(userName,room,begin);
     }
 
-    /*
     public ArrayList<Booking> getBookings(HotelRoom room){
         return db.getBookings(room);
     }

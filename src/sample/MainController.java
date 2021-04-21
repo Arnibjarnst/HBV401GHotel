@@ -190,8 +190,8 @@ public class MainController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BookingView.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
-        stage.setTitle("Sign Up");
-        stage.setScene(new Scene(root, 470, 400));
+        stage.setTitle("Bookings");
+        stage.setScene(new Scene(root, 650, 400));
         stage.show();
 
         BookingController contr = loader.getController();

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class MainDB {
 
-    private static Connection connectToDB() {
+    private Connection connectToDB() {
         Connection conn = null;
         try {
             Class.forName("org.sqlite.JDBC");
@@ -16,7 +16,7 @@ public class MainDB {
         return conn;
     }
 
-    private static void closeConnection(Connection conn){
+    private void closeConnection(Connection conn){
         try{
             if(conn != null)
                 conn.close();
@@ -26,7 +26,7 @@ public class MainDB {
         }
     }
 
-    public static ArrayList<HotelRoom> getHotels(String location, String begin, String end, int count, double minprice, double maxprice, String type) {
+    public ArrayList<HotelRoom> getHotels(String location, String begin, String end, int count, double minprice, double maxprice, String type) {
         if(location.equals("")) location = "%";
         if(type.equals("")) type = "%";
         Connection conn = connectToDB();
